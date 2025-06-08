@@ -1,5 +1,6 @@
 "use client";
 
+import { signUp } from "@/actions/auth";
 import AuthFooter from "@/components/auth/auth-footer";
 import AuthHeading from "@/components/auth/auth-heading";
 import AuthInput from "@/components/auth/auth-input";
@@ -7,18 +8,30 @@ import SubmitButton from "@/components/auth/submit-button";
 import { AuthFormData, authSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm<AuthFormData>({
     resolver: zodResolver(authSchema),
   });
 
   const onSubmit: SubmitHandler<AuthFormData> = async formData => {
-    console.log("formdata", formData);
+    try {
+      const response = await signUp(formData);
+      if (!response.success) {
+        toast.error(response.message);
+      }
+
+      reset();
+      toast.success(response.message);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
   };
 
   return (
