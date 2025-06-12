@@ -7,9 +7,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const authSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email." }).trim(),
+  email: z
+    .string()
+    .min(1, "Email is required.")
+    .email({ message: "Please enter a valid email." })
+    .trim(),
   password: z
     .string()
+    .min(1, "Password is required.")
     .min(8, "Your password must contain 8 or more characters.")
     .max(72, "Your password must contain less than 72 characters.")
     .trim(),

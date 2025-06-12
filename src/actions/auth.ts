@@ -4,6 +4,8 @@ import { AuthFormData, authSchema } from "@/lib/utils";
 import { connectDB } from "@/lib/db";
 import User from "@/models/user";
 import { MongooseError } from "mongoose";
+import { signIn, signOut } from "@/auth";
+import { AuthError } from "next-auth";
 
 export async function signUp(
   formData: AuthFormData
@@ -22,7 +24,7 @@ export async function signUp(
     const { email, password } = validatedFields.data;
 
     const existingUser = await User.findOne({ email });
-    if (existingUser) {
+    if (existingUser?.email) {
       return {
         success: false,
         message: "A user with this email already exists.",
@@ -49,4 +51,27 @@ export async function signUp(
       message: "Something went wrong.",
     };
   }
+}
+
+export async function login(credentails: AuthFormData) {
+  try {
+    await signIn("credentials", {
+      ...credentails,
+      redirectTo: "/",
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return "Invalid email or password.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+    throw error;
+  }
+}
+
+export async function logout() {
+  await signOut();
 }
