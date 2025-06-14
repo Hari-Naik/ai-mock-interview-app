@@ -8,6 +8,5 @@ export async function connectDB() {
     if (error instanceof MongooseError) {
       console.log(error.message);
     }
-    process.exit(1);
   }
 }
