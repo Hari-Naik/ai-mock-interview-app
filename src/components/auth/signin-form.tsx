@@ -8,8 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 
 import { login } from "@/actions/auth";
-import { AuthFormData, authSchema } from "@/lib/utils";
+
 import { useTransition } from "react";
+import { AuthFormData, authSchema } from "@/lib/schemas";
 
 const SignInForm = () => {
   const [isPending, startTransition] = useTransition();

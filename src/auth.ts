@@ -2,9 +2,10 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { ZodError } from "zod";
 import { connectDB } from "./lib/db";
-import { authSchema } from "./lib/utils";
+
 import User from "./models/user";
 import bcrypt from "bcrypt";
+import { authSchema } from "./lib/schemas";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [

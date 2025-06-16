@@ -1,11 +1,11 @@
 "use server";
 
-import { AuthFormData, authSchema } from "@/lib/utils";
 import { connectDB } from "@/lib/db";
 import User from "@/models/user";
 import { MongooseError } from "mongoose";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
+import { AuthFormData, authSchema } from "@/lib/schemas";
 
 export async function signUp(
   formData: AuthFormData
