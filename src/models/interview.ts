@@ -7,6 +7,8 @@ interface InterviewType extends Document {
   experience: number;
   techStack: string[];
   questions: { question: string; answer: string }[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const interviewSchema = new Schema<InterviewType>(
