@@ -45,7 +45,7 @@ const Button = ({ icon, className }: ButtonProps) => {
   return (
     <button
       className={cn(
-        "p-2 rounded hover:bg-gray-200 transition duration-300 cursor-pointer",
+        "p-2 rounded hover:bg-gray-100 transition duration-300 cursor-pointer",
         className
       )}>
       {icon}

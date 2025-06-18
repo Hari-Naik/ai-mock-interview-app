@@ -10,13 +10,26 @@ import TextArea from "./TextArea";
 import Button from "./Button";
 import { generateQuestions } from "@/lib/geminiai";
 import { formatAiResponse, getPrompt } from "@/lib/utils";
-import { createMockInterview } from "@/actions/interview";
+import { createMockInterview, updateMockInterview } from "@/actions/interview";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+// import { InterviewType } from "@/types";
 
-const MockInterviewForm = () => {
+interface MockInterviewFormProps {
+  initialData: {
+    id: string;
+    jobRole: string;
+    jobDescription: string;
+    experience: number;
+    techStack: string;
+  };
+}
+
+const MockInterviewForm = ({ initialData }: MockInterviewFormProps) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  const actions = initialData ? "Save Changes" : "Create";
 
   const {
     handleSubmit,
@@ -25,10 +38,10 @@ const MockInterviewForm = () => {
   } = useForm({
     resolver: zodResolver(mockInteviewFormSchema),
     defaultValues: {
-      jobRole: "",
-      jobDescription: "",
-      experience: 0,
-      techStack: "",
+      jobRole: initialData.jobRole || "",
+      jobDescription: initialData.jobDescription || "",
+      experience: initialData.experience || 0,
+      techStack: initialData.techStack || "",
     },
   });
 
@@ -37,10 +50,20 @@ const MockInterviewForm = () => {
       const prompt = getPrompt(formData);
       const aiResponse = await generateQuestions(prompt);
       const questions = formatAiResponse(aiResponse!);
-      const response = await createMockInterview({
-        ...formData,
-        questions,
-      });
+
+      let response;
+      if (initialData) {
+        console.log("update method ...");
+        response = await updateMockInterview(initialData.id, {
+          ...formData,
+          questions,
+        });
+      } else {
+        response = await createMockInterview({
+          ...formData,
+          questions,
+        });
+      }
 
       if (response.success) {
         toast.success(response.message);
@@ -79,9 +102,9 @@ const MockInterviewForm = () => {
           register={register}
         />
         {errors && errors.jobDescription && (
-          <span className="text-xs text-red-500 font-medium">
+          <p className="text-xs text-red-500 font-medium">
             {errors?.jobDescription.message}
-          </span>
+          </p>
         )}
       </div>
 
@@ -117,7 +140,7 @@ const MockInterviewForm = () => {
       <div className="flex gap-3 items-center justify-end">
         <Button text="Reset" type="reset" className="text-[#212121]" />
         <Button
-          text="Create"
+          text={actions}
           isPending={isPending}
           type="submit"
           className="bg-[#212121] text-white"

@@ -1,5 +1,3 @@
-// "use client";
-// import { useRouter } from "next/navigation";
 import { InterviewType } from "@/types";
 import { Eye, Newspaper, Sparkles } from "lucide-react";
 import TooltipButton from "../tooltip-button";
@@ -12,7 +10,7 @@ const MockInterviewItem = ({ interview }: MockInterviewItemProps) => {
   return (
     <li className="p-4 rounded-md hover:shadow-md shadow-gray-100 border border-gray-100 flex flex-col gap-3 cursor-pointer">
       <h1 className="text-lg  font-medium">{interview.jobRole}</h1>
-      <p className="text-md text-[#737373]">
+      <p style={{ whiteSpace: "pre-line" }} className="text-md text-[#737373]">
         {interview.jobDescription.slice(0, 350)}...
       </p>
       <div className="flex items-center gap-3">
@@ -27,9 +25,9 @@ const MockInterviewItem = ({ interview }: MockInterviewItemProps) => {
 
       <div className="flex items-center justify-between">
         <p className="text-[12px] text-muted-foreground truncate whitespace-nowrap">
-          {`${new Date(interview?.createdAt).toLocaleDateString("en-US", {
+          {`${new Date(interview?.updatedAt).toLocaleDateString("en-US", {
             dateStyle: "long",
-          })} - ${new Date(interview?.createdAt).toLocaleTimeString("en-US", {
+          })} - ${new Date(interview?.updatedAt).toLocaleTimeString("en-US", {
             timeStyle: "short",
           })}`}
         </p>

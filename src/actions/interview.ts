@@ -46,6 +46,7 @@ export async function createMockInterview(
     await Interview.create({
       userId: session.user.id,
       ...data,
+      techStack: data.techStack.split(","),
     });
 
     revalidatePath("/interviews");
@@ -53,6 +54,52 @@ export async function createMockInterview(
     return {
       success: true,
       message: "Mock interview created successfully.",
+    };
+  } catch (error) {
+    if (error instanceof MongooseError) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+    return {
+      success: false,
+      message: "Something went wrong.",
+    };
+  }
+}
+
+export async function updateMockInterview(
+  id: string,
+  data: DataType
+): Promise<ResponseType> {
+  try {
+    await connectDB();
+
+    const validatedFields = mockInteviewFormSchema.safeParse({
+      jobRole: data.jobRole,
+      jobDescription: data.jobDescription,
+      experience: data.experience,
+      techStack: data.techStack,
+    });
+
+    if (!validatedFields.success) {
+      return {
+        success: false,
+        message: "Invalid inputs.",
+      };
+    }
+
+    await Interview.findByIdAndUpdate(id, {
+      ...data,
+      techStack: data.techStack.split(","),
+    });
+
+    revalidatePath("/interviews");
+
+    return {
+      success: true,
+      message: "Changes saved successfully.",
     };
   } catch (error) {
     if (error instanceof MongooseError) {

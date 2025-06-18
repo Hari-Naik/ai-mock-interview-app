@@ -16,7 +16,7 @@ export function formatAiResponse(response: string) {
 }
 
 export function getPrompt(data: MockInteviewFormData) {
-  const prompt = `Generate a list of mock interview questions and answers as an array of objects in the following format:
+  const prompt = `Generate a list of 5 technical interview questions and answers as an array of objects in the following format:
 [{question: string, answer: string}]
 
 Consider the following inputs:
@@ -29,7 +29,7 @@ Years of Experience: ${data.experience}
 
 Tech Stack: ${data.techStack}
 
-Tailor the questions to be relevant to the role, tech stack, and experience level. Ensure a mix of technical, behavioral, and situational questions. The answers should be concise, professional, and informative. Return only the array of objects with no explanation or extra text.`;
+Tailor the questions to be relevant to the role, tech stack, and experience level.The answers should be concise, professional, and informative. Return only the array of objects with no explanation or extra text.`;
 
   return prompt;
 }

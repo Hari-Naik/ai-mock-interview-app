@@ -24,3 +24,26 @@ export const fetchInterviews = cache(async (): Promise<InterviewType[]> => {
     throw error;
   }
 });
+
+export const getInterview = async (id: string): Promise<InterviewType> => {
+  try {
+    await connectDB();
+
+    const response = await Interview.findById(id);
+    const formattedResponse = {
+      userId: response?.userId,
+      id: response?._id.toString(),
+      jobRole: response?.jobRole,
+      jobDescription: response?.jobDescription,
+      experience: response?.experience,
+      techStack: response?.techStack,
+      questions: response?.questions,
+      createdAt: response?.createdAt.toISOString(),
+      updatedAt: response?.updatedAt.toISOString(),
+    };
+
+    return formattedResponse as InterviewType;
+  } catch (error) {
+    throw error;
+  }
+};
