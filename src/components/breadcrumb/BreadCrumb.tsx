@@ -11,7 +11,7 @@ const BreadCrumb = () => {
   let breadCrumbPath = "/";
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center flex-wrap gap-1">
       <BreadCrumbItem text="home" icon={<Home size={12} />} link={"/"} />
       {breadCrumbItems.map((pathname, index) => {
         breadCrumbPath += `${pathname}/`;

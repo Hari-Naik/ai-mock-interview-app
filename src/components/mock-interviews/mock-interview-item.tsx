@@ -1,29 +1,38 @@
 import { InterviewType } from "@/types";
 import { Eye, Newspaper, Sparkles } from "lucide-react";
 import TooltipButton from "../tooltip-button";
+import { cn } from "@/lib/utils";
 
 interface MockInterviewItemProps {
   interview: InterviewType;
+  onMockPage?: boolean;
 }
 
-const MockInterviewItem = ({ interview }: MockInterviewItemProps) => {
+const MockInterviewItem = ({
+  interview,
+  onMockPage,
+}: MockInterviewItemProps) => {
   return (
-    <li className="p-4 rounded-md hover:shadow-md shadow-gray-100 border border-gray-100 flex flex-col gap-3 cursor-pointer">
+    <li className="p-4 rounded-md hover:shadow-md shadow-gray-100 border border-gray-200 flex flex-col gap-3 cursor-pointer">
       <h1 className="text-lg  font-medium">{interview.jobRole}</h1>
-      <p style={{ whiteSpace: "pre-line" }} className="text-md text-[#737373]">
+      <p style={{ whiteSpace: "pre-line" }} className="text-sm text-[#737373]">
         {interview.jobDescription.slice(0, 350)}...
       </p>
       <div className="flex items-center gap-3">
         {interview.techStack.map(skill => (
           <div
             key={skill}
-            className="px-3 py-0.5 rounded-full border border-gray-200 text-xs text-[#737373] hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-900 transition duration-250">
+            className="px-3 py-0.5 rounded-full border border-gray-200 text-xs text-[#737373] font-medium hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-900 transition duration-250">
             <span>{skill}</span>
           </div>
         ))}
       </div>
 
-      <div className="flex items-center justify-between">
+      <div
+        className={cn(
+          "flex items-center",
+          onMockPage ? "justify-end" : "justify-between"
+        )}>
         <p className="text-[12px] text-muted-foreground truncate whitespace-nowrap">
           {`${new Date(interview?.updatedAt).toLocaleDateString("en-US", {
             dateStyle: "long",
@@ -32,7 +41,8 @@ const MockInterviewItem = ({ interview }: MockInterviewItemProps) => {
           })}`}
         </p>
 
-        <div className="flex items-center gap-2">
+        <div
+          className={cn("items-center gap-2", onMockPage ? "hidden" : "flex")}>
           <TooltipButton
             link={`/interviews/edit/${interview.id}`}
             icon={<Eye size={20} />}

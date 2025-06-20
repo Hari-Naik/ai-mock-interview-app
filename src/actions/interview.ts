@@ -114,3 +114,18 @@ export async function updateMockInterview(
     };
   }
 }
+
+export async function deleteMockInterview(id: string) {
+  try {
+    await connectDB();
+    await Interview.findByIdAndDelete(id);
+    revalidatePath("/interviews");
+    return { success: true, message: "Deleted successfully." };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      message: "Failed to delete. Please try again.",
+    };
+  }
+}
