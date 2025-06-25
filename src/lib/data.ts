@@ -1,6 +1,6 @@
-import { InterviewType } from "@/types";
+import type { InterviewType } from "@/types";
 import { connectDB } from "./db";
-import Interview from "@/models/interview";
+import Interview, { QuestionSchemaType } from "@/models/interview";
 import { cache } from "react";
 
 export const fetchInterviews = cache(async (): Promise<InterviewType[]> => {
@@ -14,7 +14,11 @@ export const fetchInterviews = cache(async (): Promise<InterviewType[]> => {
       jobDescription: doc.jobDescription,
       experience: doc.experience,
       techStack: doc.techStack,
-      questions: doc.questions,
+      questions: doc.questions.map((doc: QuestionSchemaType) => ({
+        id: doc._id && doc?._id.toString(),
+        question: doc.question,
+        answer: doc.answer,
+      })),
       createdAt: doc.createdAt.toISOString(),
       updatedAt: doc.updatedAt.toISOString(),
     }));
@@ -31,13 +35,17 @@ export const getInterview = async (id: string): Promise<InterviewType> => {
 
     const response = await Interview.findById(id);
     const formattedResponse = {
-      userId: response?.userId,
-      id: response?._id.toString(),
-      jobRole: response?.jobRole,
-      jobDescription: response?.jobDescription,
-      experience: response?.experience,
-      techStack: response?.techStack,
-      questions: response?.questions,
+      userId: response.userId,
+      id: response._id.toString(),
+      jobRole: response.jobRole,
+      jobDescription: response.jobDescription,
+      experience: response.experience,
+      techStack: response.techStack,
+      questions: response.questions.map((doc: QuestionSchemaType) => ({
+        id: doc._id && doc._id.toString(),
+        question: doc.question,
+        answer: doc.answer,
+      })),
       createdAt: response?.createdAt.toISOString(),
       updatedAt: response?.updatedAt.toISOString(),
     };

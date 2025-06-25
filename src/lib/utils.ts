@@ -33,3 +33,18 @@ Tailor the questions to be relevant to the role, tech stack, and experience leve
 
   return prompt;
 }
+
+export function getPromptForFeedback(
+  question: string,
+  idealAnswer: string,
+  userAnswer: string
+): string {
+  const prompt = `			
+Question:"${question}"
+User Answer: "${userAnswer}
+Correct Answer:"${idealAnswer}"
+Please compare the user's answer to the correct answer, and provide a rating (from 1 to 10) based on answer quality, and other feedback for improvement.
+Return the result in JSON format with the fields "rating" (number) and "feedback" (string).`;
+
+  return prompt;
+}

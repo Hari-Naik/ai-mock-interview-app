@@ -8,7 +8,7 @@ import Input from "./Input";
 
 import TextArea from "./TextArea";
 import Button from "./Button";
-import { generateQuestions } from "@/lib/geminiai";
+import { generateAIResults } from "@/lib/gemini-ai";
 import { formatAiResponse, getPrompt } from "@/lib/utils";
 import { createMockInterview, updateMockInterview } from "@/actions/interview";
 import { toast } from "react-toastify";
@@ -48,7 +48,7 @@ const MockInterviewForm = ({ initialData }: MockInterviewFormProps) => {
   const onSubmit = async (formData: MockInteviewFormData) => {
     startTransition(async () => {
       const prompt = getPrompt(formData);
-      const aiResponse = await generateQuestions(prompt);
+      const aiResponse = await generateAIResults(prompt);
       const questions = formatAiResponse(aiResponse!);
 
       let response;

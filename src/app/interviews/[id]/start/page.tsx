@@ -1,9 +1,16 @@
 import BreadCrumb from "@/components/breadcrumb/BreadCrumb";
 import Container from "@/components/Container";
+import QuestionsSection from "@/components/questions-section";
+
+import { getInterview } from "@/lib/data";
 import { Lightbulb } from "lucide-react";
 import React from "react";
 
-const MockInterviewStart = () => {
+const MockInterviewStart = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
+
+  const interview = await getInterview(id);
+
   return (
     <main className="pb-10">
       <Container className="flex flex-col gap-8">
@@ -24,6 +31,8 @@ const MockInterviewStart = () => {
             </span>
           </div>
         </div>
+
+        <QuestionsSection interviewId={id} questions={interview.questions} />
       </Container>
     </main>
   );

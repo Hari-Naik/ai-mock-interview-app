@@ -17,3 +17,13 @@ declare module "next-auth/jwt" {
     userId: string;
   }
 }
+
+// declare global {
+//   interface Window {
+//     webkitSpeechRecognition: typeof SpeechRecognition;
+//   }
+
+//   interface SpeechRecognitionEvent extends Event {
+//     readonly results: SpeechRecognitionResultList;
+//   }
+// }

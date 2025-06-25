@@ -3,14 +3,32 @@ export interface IUser {
   password: string;
 }
 
-export interface InterviewType {
-  userId: string;
+export interface Question {
   id: string;
+  question: string;
+  answer: string;
+}
+
+// export interface InterviewType {
+//   userId: string;
+//   id: string;
+//   jobRole: string;
+//   jobDescription: string;
+//   experience: number;
+//   techStack: string[];
+//   questions: { id: string; question: string; answer: string }[];
+//   createdAt: string;
+//   updatedAt: string;
+// }
+
+export interface InterviewType {
+  id: string;
+  userId: string;
   jobRole: string;
   jobDescription: string;
   experience: number;
   techStack: string[];
-  questions: { question: string; answer: string }[];
+  questions: Question[];
   createdAt: string;
   updatedAt: string;
 }
