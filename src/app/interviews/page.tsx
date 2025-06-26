@@ -3,25 +3,21 @@ import Button from "@/components/Button";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-// import Interview from "@/models/interview";
-import { fetchInterviews } from "@/lib/data";
+import { getInterviews } from "@/lib/data";
 import MockInterViews from "@/components/mock-interviews/mock-interviews";
+import Heading from "@/components/heading";
 
 const MockInterviewsPage = async () => {
-  const interviews = await fetchInterviews();
+  const interviews = await getInterviews();
 
   return (
     <main className="h-screen pb-24">
       <Container className="flex flex-col gap-6 h-full">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl md:text-3xl text-gray-800 font-semibold font-sans">
-              Dashboard
-            </h1>
-            <p className="text-sm text-[#737373]">
-              Create and start your AI mock interview
-            </p>
-          </div>
+          <Heading
+            heading="Dashboard"
+            subHeading="Create and start your AI mock interview"
+          />
           <Link href={"/interviews/create"}>
             <Button
               text="Add New"

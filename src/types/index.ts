@@ -9,18 +9,6 @@ export interface Question {
   answer: string;
 }
 
-// export interface InterviewType {
-//   userId: string;
-//   id: string;
-//   jobRole: string;
-//   jobDescription: string;
-//   experience: number;
-//   techStack: string[];
-//   questions: { id: string; question: string; answer: string }[];
-//   createdAt: string;
-//   updatedAt: string;
-// }
-
 export interface InterviewType {
   id: string;
   userId: string;
@@ -31,4 +19,14 @@ export interface InterviewType {
   questions: Question[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface FeedbackType {
+  id: string;
+  interviewId: string;
+  question: string;
+  correctAnswer: string;
+  userAnswer: string;
+  feedback: string;
+  rating: number;
 }
