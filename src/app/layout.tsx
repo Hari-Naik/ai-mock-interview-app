@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <SessionProvider>
           <Header />
           {children}
+          <Footer />
           <ToastContainer autoClose={3000} hideProgressBar closeOnClick />
         </SessionProvider>
       </body>

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* body {
-  width: 100vw;
-  height: 100vh;
-} */
+@theme {
+  --text-shadow-outline: -1px -1px 0 rgba(0, 0, 0, 0.6),
+    1px -1px 0 rgba(0, 0, 0, 0.6), -1px 1px 0 rgba(0, 0, 0, 0.6),
+    1px 1px 0 rgba(0, 0, 0, 0.6);
+}

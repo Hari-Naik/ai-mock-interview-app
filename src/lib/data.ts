@@ -2,9 +2,11 @@ import type { FeedbackType, InterviewType } from "@/types";
 import Interview, { QuestionSchemaType } from "@/models/interview";
 import { cache } from "react";
 import Feedback from "@/models/feedback";
+import { connectDB } from "./db";
 
 export const getInterviews = cache(async (): Promise<InterviewType[]> => {
   try {
+    await connectDB();
     const response = await Interview.find();
     const formatted = response.map(doc => ({
       userId: doc.userId,
@@ -30,6 +32,7 @@ export const getInterviews = cache(async (): Promise<InterviewType[]> => {
 
 export const getInterview = async (id: string): Promise<InterviewType> => {
   try {
+    await connectDB();
     const response = await Interview.findById(id);
     const formattedResponse = {
       userId: response.userId,
@@ -57,6 +60,7 @@ export const getFeedback = async (
   interviewId: string
 ): Promise<FeedbackType[]> => {
   try {
+    await connectDB();
     const response = await Feedback.find({ interviewId });
     return response.map(doc => {
       return {
