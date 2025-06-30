@@ -1,16 +1,27 @@
 import { logout } from "@/actions/auth";
+import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-const UserProfile = () => {
+
+interface UserProfileProps {
+  isOpen: boolean;
+}
+const UserProfile = ({ isOpen }: UserProfileProps) => {
   const { data: session } = useSession();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
   };
 
   return (
-    <div className="absolute top-15 right-15 w-full max-w-[270px] sm:max-w-xs bg-white shadow-sm rounded">
+    <div
+      className={cn(
+        "absolute top-15 right-15 w-full max-w-[270px] sm:max-w-xs bg-white shadow-sm rounded transition-all duration-300 ease-in-out",
+        isOpen
+          ? "opacity-100 translate-y-0 visible"
+          : "opacity-0 -translate-y-2 invisible"
+      )}>
       <div className="flex items-center gap-3 p-4 border-b border-gray-200">
         {session?.user?.image ? (
           <Image

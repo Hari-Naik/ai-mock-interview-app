@@ -3,9 +3,9 @@
 import Logo from "./logo";
 import Navigation from "./navigation";
 import Profile from "./profile";
-import MenuContainer from "./menu";
 import UserProfile from "./user-profile";
 import { useState } from "react";
+import Menu from "../menu";
 
 const Header = () => {
   const [toggleProfile, setToggleProfile] = useState<boolean>(false);
@@ -24,10 +24,10 @@ const Header = () => {
       </div>
       <div className="flex items-center gap-6">
         <Profile handleToggleProfile={handleToggleProfile} />
-        <MenuContainer />
+        <Menu />
       </div>
 
-      {toggleProfile && <UserProfile />}
+      <UserProfile isOpen={toggleProfile} />
     </header>
   );
 };

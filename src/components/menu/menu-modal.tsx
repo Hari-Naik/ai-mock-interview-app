@@ -1,22 +1,16 @@
-"use client";
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React from "react";
+import Navigation from "../header/navigation";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Navigation from "./navigation";
 
-const MenuContainer = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface MenuModalProps {
+  isOpen: boolean;
+  handleToggleMenu: () => void;
+}
 
-  const handleToggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
+const MenuModal = ({ isOpen, handleToggleMenu }: MenuModalProps) => {
   return (
-    <div>
-      <button className="md:hidden cursor-pointer" onClick={handleToggleMenu}>
-        <Menu />
-      </button>
-
+    <>
       <div
         onClick={handleToggleMenu}
         className={cn(
@@ -39,8 +33,8 @@ const MenuContainer = () => {
           <Navigation />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default MenuContainer;
+export default MenuModal;

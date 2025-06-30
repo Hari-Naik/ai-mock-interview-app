@@ -21,9 +21,6 @@ const Profile = ({ handleToggleProfile }: ProfileProps) => {
         </>
       ) : (
         <Link href={"/sign-in"}>
-          {/* <button className="h-8 md:h-10 rounded-md hover:rounded-full px-3 bg-black text-white text-sm font-medium cursor-pointer">
-            Get Started
-          </button> */}
           <Button text="Get Started" />
         </Link>
       )}

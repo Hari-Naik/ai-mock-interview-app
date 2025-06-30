@@ -14,6 +14,7 @@ import { AuthFormData, authSchema } from "@/lib/schemas";
 
 const SignInForm = () => {
   const [isPending, startTransition] = useTransition();
+
   const {
     handleSubmit,
     register,
@@ -28,6 +29,7 @@ const SignInForm = () => {
 
   const onSubmit: SubmitHandler<AuthFormData> = async formData => {
     startTransition(async () => {
+      console.log("signing in...");
       const errorMessage = await login(formData);
       if (errorMessage) {
         console.log("signin error");
@@ -56,7 +58,7 @@ const SignInForm = () => {
         placeholder="Enter your password"
       />
 
-      <SubmitButton text="Signin" isLoading={isPending} />
+      <SubmitButton text="Signin" isPending={isPending} />
     </form>
   );
 };

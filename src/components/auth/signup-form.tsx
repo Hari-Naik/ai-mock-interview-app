@@ -76,7 +76,7 @@ const SignUpForm = () => {
         placeholder="Enter your password"
       />
 
-      <SubmitButton text="Signup" isLoading={isPending} />
+      <SubmitButton text="Signup" isPending={isPending} />
     </form>
   );
 };

@@ -4,19 +4,19 @@ import React from "react";
 
 interface SubmitButtonProps {
   text: string;
-  isLoading?: boolean;
+  isPending?: boolean;
 }
 
-const SubmitButton = ({ text, isLoading }: SubmitButtonProps) => {
+const SubmitButton = ({ text, isPending }: SubmitButtonProps) => {
   return (
     <button
       type="submit"
-      aria-disabled={isLoading}
+      disabled={isPending}
       className={cn(
         "py-[6px] rounded-[6px] bg-[#2F3037] hover:bg-[#3b3c45] transition duration-200 text-white text-sm",
-        isLoading ? "cursor-default" : "cursor-pointer"
+        isPending ? "cursor-not-allowed" : "cursor-pointer"
       )}>
-      {isLoading ? (
+      {isPending ? (
         <LoaderCircle size={20} className="animate-spin mx-auto" />
       ) : (
         text
