@@ -1,10 +1,14 @@
-import BreadCrumb from "@/components/breadcrumb/BreadCrumb";
-import Container from "@/components/Container";
+import BreadCrumb from "@/components/breadcrumb";
+import Container from "@/components/container";
 import DeleteButton from "@/components/delete-button";
-import MockInterviewForm from "@/components/mock-interview-form/MockInterviewForm";
+import MockInterviewForm from "@/components/mock-interview-form";
 import { getInterview } from "@/lib/data";
 
-const EditMockInterview = async ({ params }: { params: { id: string } }) => {
+const EditMockInterview = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
   const interview = await getInterview(id);
   return (

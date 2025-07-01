@@ -1,12 +1,16 @@
-import BreadCrumb from "@/components/breadcrumb/BreadCrumb";
-import Container from "@/components/Container";
+import BreadCrumb from "@/components/breadcrumb";
+import Container from "@/components/container";
 import QuestionsSection from "@/components/questions-section";
 
 import { getInterview } from "@/lib/data";
 import { Lightbulb } from "lucide-react";
 import React from "react";
 
-const MockInterviewStart = async ({ params }: { params: { id: string } }) => {
+const MockInterviewStart = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
 
   const interview = await getInterview(id);

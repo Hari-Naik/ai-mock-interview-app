@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "./Container";
+import Container from "./container";
 import { MainRoutes } from "@/lib/helpers";
 import Link from "next/link";
 import { Github, Instagram, Linkedin } from "lucide-react";

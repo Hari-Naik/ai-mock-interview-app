@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Button from "./Button";
+import Button from "./button";
 import { toast } from "react-toastify";
 import { WebcamIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -14,8 +14,6 @@ const Webcam = () => {
     if (error) {
       toast.error(error);
     }
-
-    return () => stopCamera();
   }, [error]);
 
   const startCamera = async () => {
@@ -25,12 +23,16 @@ const Webcam = () => {
         videoRef.current.srcObject = stream;
         setIsStreaming(true);
       }
-    } catch (err: any) {
-      setError(
-        err.name === "NotAllowedError"
-          ? "Camera access denied. Please allow camera permissions and try again."
-          : "Unable to access camera. Please check your camera connection."
-      );
+    } catch (err) {
+      if (err instanceof DOMException) {
+        setError(
+          err.name === "NotAllowedError"
+            ? "Camera access denied. Please allow camera permissions and try again."
+            : `Unable to access camera: ${err.message}`
+        );
+      } else {
+        setError("An unexpected error occurred while accessing the camera.");
+      }
     }
   };
 

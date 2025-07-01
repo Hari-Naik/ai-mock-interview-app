@@ -1,7 +1,6 @@
 "use client";
 
 import AuthInput from "@/components/auth/auth-input";
-import SubmitButton from "@/components/auth/submit-button";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +10,7 @@ import { signUp } from "@/actions/auth";
 
 import { useTransition } from "react";
 import { AuthFormData, authSchema } from "@/lib/schemas";
+import AuthButton from "./auth-button";
 
 const SignUpForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -76,7 +76,7 @@ const SignUpForm = () => {
         placeholder="Enter your password"
       />
 
-      <SubmitButton text="Signup" isPending={isPending} />
+      <AuthButton text="Signup" isPending={isPending} />
     </form>
   );
 };

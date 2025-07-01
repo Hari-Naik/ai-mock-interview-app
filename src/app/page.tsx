@@ -1,5 +1,5 @@
-import Button from "@/components/Button";
-import Container from "@/components/Container";
+import Button from "@/components/button";
+import Container from "@/components/container";
 import MarqueeImg from "@/components/marquee-img";
 import { Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -16,7 +16,6 @@ const Home = () => {
               AI Superpower
             </span>
             <span className="text-gray-500 font-extrabold">
-              {" "}
               - A better way to
             </span>
             <br />

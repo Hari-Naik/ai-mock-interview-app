@@ -1,13 +1,25 @@
-import BreadCrumb from "@/components/breadcrumb/BreadCrumb";
-import Button from "@/components/Button";
-import Container from "@/components/Container";
+import BreadCrumb from "@/components/breadcrumb";
+import Button from "@/components/button";
+import Container from "@/components/container";
 import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
 import Webcam from "@/components/web-cam";
-import { getInterview } from "@/lib/data";
+import { getInterview, getInterviews } from "@/lib/data";
 import { Lightbulb, Sparkles } from "lucide-react";
 import Link from "next/link";
 
-const MockInterview = async ({ params }: { params: { id: string } }) => {
+export async function generateStaticParams() {
+  const interviews = await getInterviews();
+
+  return interviews.map(interview => ({
+    id: interview.id,
+  }));
+}
+
+const MockInterview = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
   const interview = await getInterview(id);
 
@@ -19,13 +31,12 @@ const MockInterview = async ({ params }: { params: { id: string } }) => {
           <Link href={`/interviews/${interview.id}/start`}>
             <Button
               text="Start"
-              icon={<Sparkles size={20} />}
+              icon={<Sparkles size={15} className="order-2" />}
               className="flex items-center gap-1"
             />
           </Link>
         </div>
         <MockInterviewItem interview={interview} onMockPage />
-
         <div className="bg-yellow-100/50 border-y-1 border-y-red-200 p-4 rounded-lg flex  gap-3">
           <Lightbulb className="h-10 w-10 md:w-5 md:h-5 md:mt-1 -mt-1.5" />
           <div className="flex flex-col">

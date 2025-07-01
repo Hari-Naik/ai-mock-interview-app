@@ -3,7 +3,7 @@
 import { ChevronRight, Home } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import BreadCrumbItem from "./BreadCrumbItem";
+import BreadCrumbItem from "./breadcrumb-item";
 
 const BreadCrumb = () => {
   const pathname = usePathname();

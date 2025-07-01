@@ -1,7 +1,6 @@
 "use client";
 
 import AuthInput from "@/components/auth/auth-input";
-import SubmitButton from "@/components/auth/submit-button";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +10,7 @@ import { login } from "@/actions/auth";
 
 import { useTransition } from "react";
 import { AuthFormData, authSchema } from "@/lib/schemas";
+import AuthButton from "./auth-button";
 
 const SignInForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -29,7 +29,6 @@ const SignInForm = () => {
 
   const onSubmit: SubmitHandler<AuthFormData> = async formData => {
     startTransition(async () => {
-      console.log("signing in...");
       const errorMessage = await login(formData);
       if (errorMessage) {
         console.log("signin error");
@@ -58,7 +57,7 @@ const SignInForm = () => {
         placeholder="Enter your password"
       />
 
-      <SubmitButton text="Signin" isPending={isPending} />
+      <AuthButton text="Signin" isPending={isPending} />
     </form>
   );
 };

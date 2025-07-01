@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "../Button";
+import Button from "../button";
 
 interface ProfileProps {
   handleToggleProfile: () => void;
@@ -21,7 +21,7 @@ const Profile = ({ handleToggleProfile }: ProfileProps) => {
         </>
       ) : (
         <Link href={"/sign-in"}>
-          <Button text="Get Started" />
+          <Button text="Get Started" className="hover:rounded-full" />
         </Link>
       )}
     </div>

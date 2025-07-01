@@ -21,11 +21,6 @@ const QuestionsSection = ({
 
   const question = questions.find(q => q.id === activeTab);
 
-  let synth: SpeechSynthesis;
-  if (window !== undefined) {
-    synth = window.speechSynthesis;
-  }
-
   const handleClickTab = (id: string) => {
     return () => {
       setActiveTab(id);
@@ -33,6 +28,7 @@ const QuestionsSection = ({
   };
 
   const startSpeech = () => {
+    const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(question?.question);
     synth.speak(utterThis);
     setIsSpeaking(synth.speaking);
@@ -42,6 +38,7 @@ const QuestionsSection = ({
   };
 
   const stopSpeech = () => {
+    const synth = window.speechSynthesis;
     synth.cancel();
     setIsSpeaking(synth.speaking);
   };

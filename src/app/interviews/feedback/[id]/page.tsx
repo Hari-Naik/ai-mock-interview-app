@@ -1,11 +1,15 @@
-import BreadCrumb from "@/components/breadcrumb/BreadCrumb";
-import Container from "@/components/Container";
+import BreadCrumb from "@/components/breadcrumb";
+import Container from "@/components/container";
 import Feedback from "@/components/feedback";
 import Heading from "@/components/heading";
 import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
 import { getFeedback, getInterview } from "@/lib/data";
 
-const FeedbackPage = async ({ params }: { params: { id: string } }) => {
+const FeedbackPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
 
   const interview = await getInterview(id);

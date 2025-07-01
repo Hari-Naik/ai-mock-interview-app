@@ -1,6 +1,6 @@
-import BreadCrumb from "@/components/breadcrumb/BreadCrumb";
-import Container from "@/components/Container";
-import MockInterviewForm from "@/components/mock-interview-form/MockInterviewForm";
+import BreadCrumb from "@/components/breadcrumb";
+import Container from "@/components/container";
+import MockInterviewForm from "@/components/mock-interview-form";
 
 const CreateMockInterview = () => {
   return (

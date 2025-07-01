@@ -7,13 +7,13 @@ interface SubmitButtonProps {
   isPending?: boolean;
 }
 
-const SubmitButton = ({ text, isPending }: SubmitButtonProps) => {
+const AuthButton = ({ text, isPending }: SubmitButtonProps) => {
   return (
     <button
       type="submit"
       disabled={isPending}
       className={cn(
-        "py-[6px] rounded-[6px] bg-[#2F3037] hover:bg-[#3b3c45] transition duration-200 text-white text-sm",
+        "px-6 py-[6px] rounded-[6px] bg-[#2F3037] hover:bg-[#3b3c45] transition duration-200 text-white text-sm",
         isPending ? "cursor-not-allowed" : "cursor-pointer"
       )}>
       {isPending ? (
@@ -25,4 +25,4 @@ const SubmitButton = ({ text, isPending }: SubmitButtonProps) => {
   );
 };
 
-export default SubmitButton;
+export default AuthButton;
