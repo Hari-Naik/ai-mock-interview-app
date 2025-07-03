@@ -18,7 +18,7 @@ const NavLink = ({ label, href }: NavLinkProps) => {
       href={href}
       key={href}
       className={cn(
-        "text-base text-neutral-600",
+        "text-base text-neutral-600 transition duration-300",
         isActive && "text-neutral-900 font-semibold"
       )}>
       {label}
