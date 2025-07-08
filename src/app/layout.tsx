@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import { ToastContainer } from "react-toastify";
-import { SessionProvider } from "next-auth/react";
 import Footer from "@/components/footer";
+import { Provider } from "./provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,12 +30,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SessionProvider>
+        <Provider>
           <Header />
           {children}
           <Footer />
           <ToastContainer autoClose={3000} hideProgressBar closeOnClick />
-        </SessionProvider>
+        </Provider>
       </body>
     </html>
   );

@@ -6,7 +6,6 @@ import { MongooseError } from "mongoose";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import { AuthFormData, authSchema } from "@/lib/schemas";
-import { redirect } from "next/navigation";
 
 export async function signUp(
   formData: AuthFormData
@@ -58,7 +57,7 @@ export async function login(credentails: AuthFormData) {
   try {
     await signIn("credentials", {
       ...credentails,
-      redirectTo: "/",
+      redirect: false,
     });
   } catch (error) {
     if (error instanceof AuthError) {
@@ -75,5 +74,4 @@ export async function login(credentails: AuthFormData) {
 
 export async function logout() {
   await signOut();
-  redirect("/");
 }

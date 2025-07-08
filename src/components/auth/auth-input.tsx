@@ -41,19 +41,17 @@ const AuthInput = ({
   const inputType = getInputType(type, showPassword);
 
   return (
-    <div>
-      <div className="relative flex flex-col gap-2">
-        <label
-          htmlFor={type}
-          className="text-[13px] text-[#212126] font-medium">
-          {label}
-        </label>
+    <div className="flex flex-col gap-2">
+      <label htmlFor={type} className="text-[13px] text-[#212126] font-medium">
+        {label}
+      </label>
+      <div className="relative">
         <input
           {...register(name)}
           type={inputType}
           name={name}
           placeholder={placeholder}
-          className="px-4 py-1 ring ring-gray-300 rounded focus:shadow-[0px_0px_10px_rgba(0,0,0,0.1)] outline-none text-[13px] text-[#131316]"
+          className="w-full px-4 py-1 ring ring-gray-300 rounded focus:shadow-[0px_0px_10px_rgba(0,0,0,0.1)] outline-none text-[13px] text-[#131316]"
         />
         {type === "password" && (
           <button

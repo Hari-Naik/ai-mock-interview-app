@@ -13,8 +13,7 @@ const AuthButton = ({ text, isPending }: SubmitButtonProps) => {
       type="submit"
       disabled={isPending}
       className={cn(
-        "px-6 py-[6px] rounded-[6px] bg-[#2F3037] hover:bg-[#3b3c45] transition duration-200 text-white text-sm",
-        isPending ? "cursor-not-allowed" : "cursor-pointer"
+        "px-6 py-[6px] rounded-[6px] bg-[#2F3037] hover:bg-[#3b3c45] transition duration-200 text-white text-sm cursor-pointer disabled:cursor-not-allowed"
       )}>
       {isPending ? (
         <LoaderCircle size={20} className="animate-spin mx-auto" />

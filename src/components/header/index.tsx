@@ -2,10 +2,10 @@
 
 import Logo from "./logo";
 import Navigation from "./navigation";
-import Profile from "./profile";
 import UserProfile from "./user-profile";
 import { useEffect, useRef, useState } from "react";
 import Menu from "../menu";
+import UserAvatar from "./user-avatar";
 
 const Header = () => {
   const [toggleProfile, setToggleProfile] = useState<boolean>(false);
@@ -44,7 +44,7 @@ const Header = () => {
         </nav>
       </div>
       <div className="flex items-center gap-6">
-        <Profile handleToggleProfile={handleToggleProfile} />
+        <UserAvatar handleToggleProfile={handleToggleProfile} />
         <Menu />
       </div>
 

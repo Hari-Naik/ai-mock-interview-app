@@ -4,7 +4,7 @@ import MockInterviewForm from "@/components/mock-interview-form";
 
 const CreateMockInterview = () => {
   return (
-    <main>
+    <div>
       <Container className="flex flex-col gap-4">
         <BreadCrumb />
         <h1 className="text-2xl md:text-3xl text-gray-800 font-semibold font-sans">
@@ -12,7 +12,7 @@ const CreateMockInterview = () => {
         </h1>
         <MockInterviewForm />
       </Container>
-    </main>
+    </div>
   );
 };
 

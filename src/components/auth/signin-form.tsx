@@ -1,17 +1,15 @@
 "use client";
+import { useTransition } from "react";
 
 import AuthInput from "@/components/auth/auth-input";
+import AuthButton from "./auth-button";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 
-import { login } from "@/actions/auth";
-
-import { useTransition } from "react";
 import { AuthFormData, authSchema } from "@/lib/schemas";
-import AuthButton from "./auth-button";
-
+import { login } from "@/actions/auth";
 const SignInForm = () => {
   const [isPending, startTransition] = useTransition();
 
@@ -31,9 +29,9 @@ const SignInForm = () => {
     startTransition(async () => {
       const errorMessage = await login(formData);
       if (errorMessage) {
-        console.log("signin error");
         toast.error(errorMessage);
-        return;
+      } else {
+        window.location.href = "/";
       }
     });
   };

@@ -16,7 +16,7 @@ const MockInterviewStart = async ({
   const interview = await getInterview(id);
 
   return (
-    <main className="pb-10">
+    <div className="pb-10">
       <Container className="flex flex-col gap-8">
         <BreadCrumb />
         <div className="bg-sky-100/50 p-4 rounded-lg flex  gap-3 border border-sky-200">
@@ -38,7 +38,7 @@ const MockInterviewStart = async ({
 
         <QuestionsSection interviewId={id} questions={interview.questions} />
       </Container>
-    </main>
+    </div>
   );
 };
 

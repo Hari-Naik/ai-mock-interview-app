@@ -1,8 +1,8 @@
-import { logout } from "@/actions/auth";
 import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+
 import { forwardRef } from "react";
 
 interface UserProfileProps {
@@ -13,8 +13,8 @@ const UserProfile = forwardRef<HTMLDivElement, UserProfileProps>(
   ({ isOpen }, ref) => {
     const { data: session } = useSession();
 
-    const handleLogout = async () => {
-      logout();
+    const handleLogout = () => {
+      signOut();
     };
 
     return (

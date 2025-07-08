@@ -18,7 +18,7 @@ const FeedbackPage = async ({
   const rating = feedbacks.reduce((acc, cur) => acc + cur.rating, 0);
   const overAllRating = (rating / feedbacks.length).toFixed(1);
   return (
-    <div className="py-5">
+    <div className="pb-24">
       <Container className="flex flex-col gap-8">
         <BreadCrumb />
         <Heading

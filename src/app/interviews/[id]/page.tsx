@@ -24,7 +24,7 @@ const MockInterview = async ({
   const interview = await getInterview(id);
 
   return (
-    <main className="pb-24">
+    <div className="pb-24">
       <Container className="flex flex-col gap-8">
         <div className="flex items-center justify-between">
           <BreadCrumb />
@@ -58,7 +58,7 @@ const MockInterview = async ({
 
         <Webcam />
       </Container>
-    </main>
+    </div>
   );
 };
 

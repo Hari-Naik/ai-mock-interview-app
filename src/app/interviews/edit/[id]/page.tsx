@@ -12,7 +12,7 @@ const EditMockInterview = async ({
   const { id } = await params;
   const interview = await getInterview(id);
   return (
-    <main className="pb-24">
+    <div className="pb-24">
       <Container className="flex flex-col gap-6">
         <BreadCrumb />
         <div className="flex items-center justify-between">
@@ -31,7 +31,7 @@ const EditMockInterview = async ({
           }}
         />
       </Container>
-    </main>
+    </div>
   );
 };
 

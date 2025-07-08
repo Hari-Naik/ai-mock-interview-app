@@ -11,7 +11,7 @@ const MockInterviewsPage = async () => {
   const interviews = await getInterviews();
 
   return (
-    <main className="h-screen pb-24">
+    <div className="pb-24">
       <Container className="flex flex-col gap-6 h-full">
         <div className="flex items-center justify-between">
           <Heading
@@ -32,7 +32,7 @@ const MockInterviewsPage = async () => {
           <NoDataView />
         )}
       </Container>
-    </main>
+    </div>
   );
 };
 
