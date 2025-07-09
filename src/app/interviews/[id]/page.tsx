@@ -5,8 +5,21 @@ import MockInterviewItem from "@/components/mock-interviews/mock-interview-item"
 import Webcam from "@/components/web-cam";
 import { getInterview, getInterviews } from "@/lib/data";
 import { Lightbulb, Sparkles } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const interview = await getInterview(id);
+
+  return {
+    title: `Practice ${interview.jobRole} Mock Interview`,
+  };
+}
 export async function generateStaticParams() {
   const interviews = await getInterviews();
 
@@ -15,11 +28,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const MockInterview = async ({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) => {
+const MockInterview = async ({ params }: Props) => {
   const { id } = await params;
   const interview = await getInterview(id);
 

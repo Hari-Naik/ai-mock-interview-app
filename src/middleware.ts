@@ -1,10 +1,7 @@
-// import { NextResponse } from "next/server";
-// import type { NextRequest } from "next/server";
-// import { auth } from "./auth";
-
 import { NextRequest, NextResponse } from "next/server";
 
 const protectedRoutes = ["/interviews"];
+const authRoutes = ["/sign-in", "/sign-up"];
 
 export default async function middleware(request: NextRequest) {
   const sessionToken = request.cookies.get("authjs.session-token")?.value;
@@ -13,6 +10,12 @@ export default async function middleware(request: NextRequest) {
   const isProtectedRoute = protectedRoutes.some(route =>
     pathname.startsWith(route)
   );
+
+  const isAuthRoute = authRoutes.some(route => pathname.startsWith(route));
+
+  if (isAuthRoute && sessionToken) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
   if (isProtectedRoute && !sessionToken) {
     return NextResponse.redirect(new URL("/sign-in", request.url));

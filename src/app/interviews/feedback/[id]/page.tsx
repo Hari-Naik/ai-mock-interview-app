@@ -4,12 +4,22 @@ import Feedback from "@/components/feedback";
 import Heading from "@/components/heading";
 import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
 import { getFeedback, getInterview } from "@/lib/data";
+import { Metadata } from "next";
 
-const FeedbackPage = async ({
-  params,
-}: {
+type Props = {
   params: Promise<{ id: string }>;
-}) => {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const interview = await getInterview(id);
+
+  return {
+    title: `Feedback | ${interview.jobRole}`,
+  };
+}
+
+const FeedbackPage = async ({ params }: Props) => {
   const { id } = await params;
 
   const interview = await getInterview(id);

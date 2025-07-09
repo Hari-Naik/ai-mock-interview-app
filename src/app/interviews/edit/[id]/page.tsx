@@ -3,12 +3,22 @@ import Container from "@/components/container";
 import DeleteButton from "@/components/delete-button";
 import MockInterviewForm from "@/components/mock-interview-form";
 import { getInterview } from "@/lib/data";
+import { Metadata } from "next";
 
-const EditMockInterview = async ({
-  params,
-}: {
+type Props = {
   params: Promise<{ id: string }>;
-}) => {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const interview = await getInterview(id);
+
+  return {
+    title: `Edit Mock Interview | ${interview.jobRole}`,
+  };
+}
+
+const EditMockInterview = async ({ params }: Props) => {
   const { id } = await params;
   const interview = await getInterview(id);
   return (

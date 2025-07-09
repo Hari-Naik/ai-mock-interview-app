@@ -4,13 +4,23 @@ import QuestionsSection from "@/components/questions-section";
 
 import { getInterview } from "@/lib/data";
 import { Lightbulb } from "lucide-react";
+import { Metadata } from "next";
 import React from "react";
 
-const MockInterviewStart = async ({
-  params,
-}: {
+type Props = {
   params: Promise<{ id: string }>;
-}) => {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const interview = await getInterview(id);
+
+  return {
+    title: `Start ${interview.jobRole} Mock Interview`,
+  };
+}
+
+const MockInterviewStart = async ({ params }: Props) => {
   const { id } = await params;
 
   const interview = await getInterview(id);

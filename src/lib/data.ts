@@ -30,31 +30,33 @@ export const getInterviews = cache(async (): Promise<InterviewType[]> => {
   }
 });
 
-export const getInterview = async (id: string): Promise<InterviewType> => {
-  try {
-    await connectDB();
-    const response = await Interview.findById(id);
-    const formattedResponse = {
-      userId: response.userId,
-      id: response._id.toString(),
-      jobRole: response.jobRole,
-      jobDescription: response.jobDescription,
-      experience: response.experience,
-      techStack: response.techStack,
-      questions: response.questions.map((doc: QuestionSchemaType) => ({
-        id: doc._id && doc._id.toString(),
-        question: doc.question,
-        answer: doc.answer,
-      })),
-      createdAt: response?.createdAt.toISOString(),
-      updatedAt: response?.updatedAt.toISOString(),
-    };
+export const getInterview = cache(
+  async (id: string): Promise<InterviewType> => {
+    try {
+      await connectDB();
+      const response = await Interview.findById(id);
+      const formattedResponse = {
+        userId: response.userId,
+        id: response._id.toString(),
+        jobRole: response.jobRole,
+        jobDescription: response.jobDescription,
+        experience: response.experience,
+        techStack: response.techStack,
+        questions: response.questions.map((doc: QuestionSchemaType) => ({
+          id: doc._id && doc._id.toString(),
+          question: doc.question,
+          answer: doc.answer,
+        })),
+        createdAt: response?.createdAt.toISOString(),
+        updatedAt: response?.updatedAt.toISOString(),
+      };
 
-    return formattedResponse as InterviewType;
-  } catch (error) {
-    throw error;
+      return formattedResponse as InterviewType;
+    } catch (error) {
+      throw error;
+    }
   }
-};
+);
 
 export const getFeedback = async (
   interviewId: string
