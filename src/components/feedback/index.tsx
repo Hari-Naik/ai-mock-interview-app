@@ -1,8 +1,9 @@
 "use client";
+import { useState } from "react";
 
 import { FeedbackType } from "@/types";
+
 import FeedbackItem from "./feedback-item";
-import { useState } from "react";
 
 interface FeedbackProps {
   feedbacks: FeedbackType[];

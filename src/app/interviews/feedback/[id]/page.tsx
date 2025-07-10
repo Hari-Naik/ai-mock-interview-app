@@ -1,10 +1,12 @@
-import BreadCrumb from "@/components/breadcrumb";
-import Container from "@/components/container";
-import Feedback from "@/components/feedback";
-import Heading from "@/components/heading";
-import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
-import { getFeedback, getInterview } from "@/lib/data";
 import { Metadata } from "next";
+
+import Heading from "@/components/heading";
+import Feedback from "@/components/feedback";
+import Container from "@/components/container";
+import BreadCrumb from "@/components/breadcrumb";
+import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
+
+import { getFeedback, getInterview } from "@/lib/data";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -27,6 +29,7 @@ const FeedbackPage = async ({ params }: Props) => {
 
   const rating = feedbacks.reduce((acc, cur) => acc + cur.rating, 0);
   const overAllRating = (rating / feedbacks.length).toFixed(1);
+
   return (
     <div className="pb-24">
       <Container className="flex flex-col gap-8">

@@ -1,9 +1,10 @@
-import { cn } from "@/lib/utils";
-import { LogOut } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { forwardRef } from "react";
 import Image from "next/image";
 
-import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
+import { LogOut } from "lucide-react";
+
+import { signOut, useSession } from "next-auth/react";
 
 interface UserProfileProps {
   isOpen: boolean;

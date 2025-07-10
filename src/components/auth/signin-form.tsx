@@ -1,15 +1,17 @@
 "use client";
+
 import { useTransition } from "react";
 
-import AuthInput from "@/components/auth/auth-input";
+import { toast } from "react-toastify";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import { login } from "@/actions/auth";
+import { AuthFormData, authSchema } from "@/lib/schemas";
+
+import AuthInput from "./auth-input";
 import AuthButton from "./auth-button";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "react-toastify";
-
-import { AuthFormData, authSchema } from "@/lib/schemas";
-import { login } from "@/actions/auth";
 const SignInForm = () => {
   const [isPending, startTransition] = useTransition();
 

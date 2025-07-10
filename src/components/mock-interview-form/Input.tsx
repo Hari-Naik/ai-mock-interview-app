@@ -1,5 +1,5 @@
 import { MockInteviewFormData } from "@/lib/schemas";
-import React from "react";
+
 import { Path, UseFormRegister } from "react-hook-form";
 
 interface InputProps {

@@ -1,11 +1,12 @@
-import Button from "@/components/button";
-import Container from "@/components/container";
-
-import MarqueeImg from "@/components/marquee-img";
-import { Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Sparkles } from "lucide-react";
 import Marquee from "react-fast-marquee";
+
+import Button from "@/components/button";
+import Container from "@/components/container";
+import MarqueeImg from "@/components/marquee-img";
 
 const Home = () => {
   return (

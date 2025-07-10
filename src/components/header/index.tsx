@@ -1,11 +1,12 @@
 "use client";
 
-import Logo from "./logo";
-import Navigation from "./navigation";
-import UserProfile from "./user-profile";
 import { useEffect, useRef, useState } from "react";
+
+import Logo from "./logo";
 import Menu from "../menu";
+import Navigation from "./navigation";
 import UserAvatar from "./user-avatar";
+import UserProfile from "./user-profile";
 
 const Header = () => {
   const [toggleProfile, setToggleProfile] = useState<boolean>(false);

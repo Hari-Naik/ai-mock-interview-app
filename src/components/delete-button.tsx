@@ -1,12 +1,14 @@
 "use client";
-import { deleteMockInterview } from "@/actions/interview";
+
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+
 import { toast } from "react-toastify";
+import { deleteMockInterview } from "@/actions/interview";
 
 const DeleteButton = ({ id }: { id: string }) => {
   const router = useRouter();
+
   const handleDelete = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await deleteMockInterview(id);

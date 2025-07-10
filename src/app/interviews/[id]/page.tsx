@@ -1,12 +1,16 @@
-import BreadCrumb from "@/components/breadcrumb";
-import Button from "@/components/button";
-import Container from "@/components/container";
-import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
-import Webcam from "@/components/web-cam";
-import { getInterview, getInterviews } from "@/lib/data";
-import { Lightbulb, Sparkles } from "lucide-react";
-import { Metadata } from "next";
 import Link from "next/link";
+import { Metadata } from "next";
+
+import Alert from "@/components/alert";
+import Button from "@/components/button";
+import Webcam from "@/components/web-cam";
+import Container from "@/components/container";
+import BreadCrumb from "@/components/breadcrumb";
+import MockInterviewItem from "@/components/mock-interviews/mock-interview-item";
+
+import { Sparkles } from "lucide-react";
+
+import { getInterview, getInterviews } from "@/lib/data";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -45,25 +49,16 @@ const MockInterview = async ({ params }: Props) => {
             />
           </Link>
         </div>
+
         <MockInterviewItem interview={interview} onMockPage />
-        <div className="bg-yellow-100/50 border-y-1 border-y-red-200 p-4 rounded-lg flex  gap-3">
-          <Lightbulb className="h-10 w-10 md:w-5 md:h-5 md:mt-1 -mt-1.5" />
-          <div className="flex flex-col">
-            <span className="text-yellow-800 font-semibold">
-              Important Information
-            </span>
-            <span className="text-sm text-yellow-700 mt-1">
-              Please enable your webcam and microphone to start the AI-generated
+
+        <Alert
+          heading="Important Information"
+          description="Please enable your webcam and microphone to start the AI-generated
               mock interview. The interview consists of five questions. You’ll
-              receive a personalized report based on your responses at the end.{" "}
-              <br />
-              <br />
-              <span className="font-medium">Note:</span> Your video is{" "}
-              <strong>never recorded</strong>. You can disable your webcam at
-              any time.
-            </span>
-          </div>
-        </div>
+              receive a personalized report based on your responses at the end.
+			  "
+        />
 
         <Webcam />
       </Container>

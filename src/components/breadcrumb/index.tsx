@@ -1,10 +1,11 @@
 "use client";
 
-import { ChevronRight, Home } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import BreadCrumbItem from "./breadcrumb-item";
+import { usePathname } from "next/navigation";
 
+import { ChevronRight, Home } from "lucide-react";
+
+import BreadCrumbItem from "./breadcrumb-item";
 const BreadCrumb = () => {
   const pathname = usePathname();
   const breadCrumbItems = pathname.split("/").slice(1);

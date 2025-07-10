@@ -1,12 +1,13 @@
 "use client";
+import React, { useState } from "react";
+
+import Webcam from "../web-cam";
+import RecordAnswer from "./record-answer";
+import TooltipButton from "../tooltip-button";
+import { Volume2, VolumeX } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Question } from "@/types";
-import React, { useState } from "react";
-import TooltipButton from "../tooltip-button";
-import { Volume2, VolumeX } from "lucide-react";
-import Webcam from "../web-cam";
-import RecordAnswer from "./record-answer";
 
 interface QuestionsSectionProps {
   interviewId: string;

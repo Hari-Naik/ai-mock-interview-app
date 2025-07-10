@@ -1,9 +1,11 @@
-import BreadCrumb from "@/components/breadcrumb";
+import { Metadata } from "next";
+
 import Container from "@/components/container";
+import BreadCrumb from "@/components/breadcrumb";
 import DeleteButton from "@/components/delete-button";
 import MockInterviewForm from "@/components/mock-interview-form";
+
 import { getInterview } from "@/lib/data";
-import { Metadata } from "next";
 
 type Props = {
   params: Promise<{ id: string }>;

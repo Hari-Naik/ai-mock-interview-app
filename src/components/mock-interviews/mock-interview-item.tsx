@@ -1,7 +1,8 @@
-import { InterviewType } from "@/types";
-import { Eye, Newspaper, Sparkles } from "lucide-react";
 import TooltipButton from "../tooltip-button";
+import { Eye, Newspaper, Sparkles } from "lucide-react";
+
 import { cn } from "@/lib/utils";
+import { InterviewType } from "@/types";
 
 interface MockInterviewItemProps {
   interview: InterviewType;

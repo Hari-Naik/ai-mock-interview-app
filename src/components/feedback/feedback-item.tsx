@@ -1,37 +1,19 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { FeedbackType } from "@/types";
-import { CircleCheck, Star } from "lucide-react";
 import { JSX } from "react";
+import { cn } from "@/lib/utils";
+
+import { FeedbackType } from "@/types";
+
+import { CircleCheck, Star } from "lucide-react";
 
 interface FeedbackItemProps {
   feedback: FeedbackType;
+
   isActive: boolean;
   setActiveFeedback: (id: string) => void;
 }
 
-const FeedbackContent = ({
-  icon,
-  title,
-  content,
-  className,
-}: {
-  icon: JSX.Element;
-  title: string;
-  content: string;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("p-4 rounded-lg shadow-md", className)}>
-      <div className="flex items-center gap-2">
-        {icon}
-        <span className="text-lg font-semibold">{title}</span>
-      </div>
-      <span className="text-sm font-medium">{content}</span>
-    </div>
-  );
-};
 const FeedbackItem = ({
   feedback,
   isActive,
@@ -89,6 +71,28 @@ const FeedbackItem = ({
         </div>
       </div>
     </li>
+  );
+};
+
+const FeedbackContent = ({
+  icon,
+  title,
+  content,
+  className,
+}: {
+  icon: JSX.Element;
+  title: string;
+  content: string;
+  className?: string;
+}) => {
+  return (
+    <div className={cn("p-4 rounded-lg shadow-md", className)}>
+      <div className="flex items-center gap-2">
+        {icon}
+        <span className="text-lg font-semibold">{title}</span>
+      </div>
+      <span className="text-sm font-medium">{content}</span>
+    </div>
   );
 };
 

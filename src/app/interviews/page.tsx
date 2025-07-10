@@ -1,18 +1,21 @@
-import Container from "@/components/container";
-import Button from "@/components/button";
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { getInterviews } from "@/lib/data";
-import MockInterViews from "@/components/mock-interviews/mock-interviews";
+
 import Heading from "@/components/heading";
+import Button from "@/components/button";
+import Container from "@/components/container";
+import MockInterViews from "@/components/mock-interviews/mock-interviews";
+
+import { Plus } from "lucide-react";
+
+import { getInterviews } from "@/lib/data";
 
 const MockInterviewsPage = async () => {
   const interviews = await getInterviews();
 
   return (
     <div className="pb-24">
-      <Container className="flex flex-col gap-6 h-full">
+      <Container className="flex flex-col gap-10 h-full">
         <div className="flex items-center justify-between">
           <Heading
             heading="Dashboard"

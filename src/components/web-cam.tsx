@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+
 import Button from "./button";
 import { toast } from "react-toastify";
 import { WebcamIcon } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 const Webcam = () => {
   const videoRef = useRef<HTMLVideoElement>(null);

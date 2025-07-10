@@ -1,8 +1,44 @@
-import React from "react";
-import Container from "./container";
-import { MainRoutes } from "@/lib/helpers";
 import Link from "next/link";
+
+import Container from "./container";
 import { Github, Instagram, Linkedin } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { MainRoutes } from "@/lib/helpers";
+
+interface SocialLinkProps {
+  href: string;
+  icon: React.ReactNode;
+  className: string;
+}
+
+const SocialLink: React.FC<SocialLinkProps> = ({ href, icon, className }) => {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      className={cn("transition duration-300", className)}>
+      {icon}
+    </Link>
+  );
+};
+
+interface FooterLinkProps {
+  href: string;
+  label: string;
+}
+
+const FooterLink: React.FC<FooterLinkProps> = ({ href, label }) => {
+  return (
+    <li>
+      <Link
+        href={href}
+        className="text-base text-gray-300 hover:text-gray-100 hover:underline font-medium transition duration-200">
+        {label}
+      </Link>
+    </li>
+  );
+};
 
 const Footer = () => {
   return (
@@ -13,16 +49,15 @@ const Footer = () => {
 
           <ul className="flex flex-col gap-3">
             {MainRoutes.map(route => (
-              <li key={route.href}>
-                <Link
-                  href={route.href}
-                  className="text-base text-gray-300 hover:text-gray-100 hover:underline font-medium transition duration-200">
-                  {route.label}
-                </Link>
-              </li>
+              <FooterLink
+                key={route.href}
+                href={route.href}
+                label={route.label}
+              />
             ))}
           </ul>
         </div>
+
         <div>
           <h3 className="font-bold text-lg mb-4 text-gray-300">Services</h3>
 
@@ -35,23 +70,11 @@ const Footer = () => {
 
         <div>
           <h3 className="font-bold text-lg mb-4 text-gray-300">About Us</h3>
-          <div className="flex flex-col gap-3">
-            <Link
-              href="/interviews"
-              className="capitalize text-base text-gray-300 hover:text-gray-100 hover:underline font-medium transition duration-200">
-              Interview preparation
-            </Link>
-            <Link
-              href="/"
-              className="capitalize text-base text-gray-300 hover:text-gray-100 hover:underline font-medium transition duration-200">
-              career coaching
-            </Link>
-            <Link
-              href="/"
-              className="capitalize text-base text-gray-300 hover:text-gray-100 hover:underline font-medium transition duration-200">
-              resume building
-            </Link>
-          </div>
+          <ul className="flex flex-col gap-3">
+            <FooterLink href="/interviews" label="Interview Preparation" />
+            <FooterLink href="/" label="Career Coaching" />
+            <FooterLink href="/" label="Resume Building" />
+          </ul>
         </div>
 
         <div>
@@ -59,26 +82,24 @@ const Footer = () => {
           <p className="text-base text-gray-300 hover:text-gray-100">
             Hyderabad, TS
           </p>
-          <div className="flex items-center gap-4 mt-4">
-            <Link href="https://linkedin.com/harinaik">
-              <Linkedin
-                size={24}
-                className="text-gray-300 hover:text-blue-700 transition duration-300"
-              />
-            </Link>
-            <Link href="https://github.com/Hari-Naik">
-              <Github
-                size={24}
-                className="text-gray-300 hover:text-blue-700 transition duration-300"
-              />
-            </Link>
-            <Link href="https://github.com/Hari-Naik">
-              <Instagram
-                size={24}
-                className="text-gray-300 hover:text-blue-700 transition duration-300"
-              />
-            </Link>
-          </div>
+          <ul className="flex items-center gap-4 mt-4">
+            <SocialLink
+              href="https://github.com/Hari-Naik"
+              icon={<Github size={24} />}
+              className="hover:text-blue-400"
+            />
+
+            <SocialLink
+              href="https://linkedin.com/in/harinaik"
+              icon={<Linkedin size={24} />}
+              className="hover:text-blue-700"
+            />
+            <SocialLink
+              href="https://instagram.com"
+              icon={<Instagram size={24} />}
+              className="hover:text-pink-500"
+            />
+          </ul>
         </div>
       </Container>
     </footer>

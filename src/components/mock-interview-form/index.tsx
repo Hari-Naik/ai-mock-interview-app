@@ -1,20 +1,21 @@
 "use client";
 
-import { MockInteviewFormData, mockInteviewFormSchema } from "@/lib/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import Input from "./input";
-import TextArea from "./text-area";
-import Button from "./button";
-import { generateAIResults } from "@/lib/gemini-ai";
-import { formatAiResponse, getPrompt } from "@/lib/utils";
-import { createMockInterview, updateMockInterview } from "@/actions/interview";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+
+import Input from "./input";
+import Button from "./button";
+import TextArea from "./text-area";
 import { LoaderCircle } from "lucide-react";
 
-// import { InterviewType } from "@/types";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { generateAIResults } from "@/lib/gemini-ai";
+import { formatAiResponse, getPrompt } from "@/lib/utils";
+import { MockInteviewFormData, mockInteviewFormSchema } from "@/lib/schemas";
+import { createMockInterview, updateMockInterview } from "@/actions/interview";
 
 interface MockInterviewFormProps {
   initialData?: {

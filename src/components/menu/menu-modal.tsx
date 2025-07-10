@@ -1,8 +1,7 @@
-import React from "react";
-import Navigation from "../header/navigation";
-import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 
+import Navigation from "../header/navigation";
 interface MenuModalProps {
   isOpen: boolean;
   handleToggleMenu: () => void;

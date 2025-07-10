@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
-import React from "react";
 
 interface SaveModalProps {
   isLoading: boolean;

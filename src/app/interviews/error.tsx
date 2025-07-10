@@ -1,8 +1,9 @@
 "use client"; // Error boundaries must be Client Components
+import { useEffect } from "react";
+
+import Image from "next/image";
 
 import Button from "@/components/button";
-import Image from "next/image";
-import { useEffect } from "react";
 
 export default function Error({
   error,

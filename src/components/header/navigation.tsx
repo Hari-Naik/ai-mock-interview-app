@@ -1,9 +1,5 @@
-import { MainRoutes } from "@/lib/helpers";
 import NavLink from "./nav-link";
-
-// interface NavigationProps {
-//   isMobile: boolean;
-// }
+import { MainRoutes } from "@/lib/helpers";
 
 const Navigation = () => {
   return (

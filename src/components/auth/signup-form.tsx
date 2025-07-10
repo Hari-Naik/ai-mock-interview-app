@@ -1,15 +1,15 @@
 "use client";
 
-import AuthInput from "@/components/auth/auth-input";
+import { useTransition } from "react";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { signUp } from "@/actions/auth";
-
-import { useTransition } from "react";
 import { AuthFormData, authSchema } from "@/lib/schemas";
+
+import AuthInput from "./auth-input";
 import AuthButton from "./auth-button";
 
 const SignUpForm = () => {
@@ -27,15 +27,6 @@ const SignUpForm = () => {
       password: "",
     },
   });
-
-  //   const onSubmit: SubmitHandler<AuthFormData> = async formData => {
-  //     const errorMessage = await login(formData);
-  //     if (errorMessage) {
-  //       console.log("signin error");
-  //       toast.error(errorMessage);
-  //       return;
-  //     }
-  //   };
 
   const onSubmit: SubmitHandler<AuthFormData> = async formData => {
     startTransition(async () => {
