@@ -4,8 +4,9 @@ import React, { useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import Input from "./input";
-import Button from "./button";
 import TextArea from "./text-area";
+import FormButton from "./form-button";
+
 import { LoaderCircle } from "lucide-react";
 
 import { toast } from "react-toastify";
@@ -140,10 +141,13 @@ const MockInterviewForm = ({ initialData }: MockInterviewFormProps) => {
       </div>
 
       <div className="flex gap-3 items-center justify-end">
-        <Button type="reset" isPending={isPending} className="text-[#212121]">
+        <FormButton
+          type="reset"
+          isPending={isPending}
+          className="text-[#212121]">
           Reset
-        </Button>
-        <Button
+        </FormButton>
+        <FormButton
           type="submit"
           isPending={isPending}
           className="bg-[#212121] text-white">
@@ -152,7 +156,7 @@ const MockInterviewForm = ({ initialData }: MockInterviewFormProps) => {
           ) : (
             actions
           )}
-        </Button>
+        </FormButton>
       </div>
     </form>
   );

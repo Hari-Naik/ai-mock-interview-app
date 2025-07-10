@@ -7,7 +7,7 @@ interface ButtonProps {
   isPending?: boolean;
 }
 
-const Button = ({ type, children, className, isPending }: ButtonProps) => {
+const FormButton = ({ type, children, className, isPending }: ButtonProps) => {
   return (
     <button
       type={type}
@@ -22,4 +22,4 @@ const Button = ({ type, children, className, isPending }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default FormButton;

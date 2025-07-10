@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import Button from "../button";
-
 import { useSession } from "next-auth/react";
+import Button from "../button";
 
 interface UserAvatarProps {
   handleToggleProfile: () => void;
