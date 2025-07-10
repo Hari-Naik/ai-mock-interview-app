@@ -4,7 +4,10 @@ const protectedRoutes = ["/interviews"];
 const authRoutes = ["/sign-in", "/sign-up"];
 
 export default async function middleware(request: NextRequest) {
-  const sessionToken = request.cookies.get("authjs.session-token")?.value;
+  const sessionToken =
+    request.cookies.get("__Secure-authjs.session-token")?.value ||
+    request.cookies.get("authjs.session-token")?.value;
+
   const { pathname } = request.nextUrl;
 
   const isProtectedRoute = protectedRoutes.some(route =>
