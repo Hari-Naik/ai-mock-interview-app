@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { generateAIResults } from "@/lib/gemini-ai";
-import { formatAiResponse, getPrompt } from "@/lib/utils";
+import { formatAIResponse, getPrompt } from "@/lib/utils";
 import { MockInteviewFormData, mockInteviewFormSchema } from "@/lib/schemas";
 import { createMockInterview, updateMockInterview } from "@/actions/interview";
 
@@ -52,11 +52,11 @@ const MockInterviewForm = ({ initialData }: MockInterviewFormProps) => {
     startTransition(async () => {
       const prompt = getPrompt(formData);
       const aiResponse = await generateAIResults(prompt);
-      const questions = formatAiResponse(aiResponse!);
+      const questions = formatAIResponse(aiResponse!);
 
       let response;
       if (initialData) {
-        console.log("update method ...");
+        
         response = await updateMockInterview(initialData.id, {
           ...formData,
           questions,

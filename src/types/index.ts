@@ -30,3 +30,19 @@ export interface FeedbackType {
   feedback: string;
   rating: number;
 }
+
+export interface AnalysisResultType {
+  pdfUrl: string;
+  jobRole: string;
+  analysisResult: {
+    matchScore: number;
+    summary: string;
+    strengths: string[];
+    weaknesses: string[];
+    missingSkills: string[];
+    recommendedImprovements: string[];
+    atsFriendliness: string[];
+    isRoleSuitable: boolean;
+    roleSuitabilityReason: string;
+  };
+}

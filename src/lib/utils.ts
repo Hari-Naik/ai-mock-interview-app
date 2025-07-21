@@ -6,14 +6,29 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatAiResponse(response: string) {
-  const startIndex = response.indexOf("[");
-  const endIndex = response.lastIndexOf("]");
+// export function formatAiResponse(response: string) {
+//   const startIndex = response.indexOf("[");
+//   const endIndex = response.lastIndexOf("]");
 
-  const text = response.slice(startIndex, endIndex + 1);
+//   const text = response.slice(startIndex, endIndex + 1);
 
-  return JSON.parse(text);
-}
+//   return JSON.parse(text);
+// }
+
+export const formatAIResponse = (response: string) => {
+  let cleanText = response.trim();
+  cleanText = cleanText.replace("```json", "");
+  cleanText = cleanText.replace("```", "");
+
+  const controlCharsRegex = new RegExp(`[\\u0000-\\u001F]+`, "g");
+  cleanText = cleanText.replace(controlCharsRegex, " ");
+
+  try {
+    return JSON.parse(cleanText);
+  } catch (error) {
+    throw new Error("Invalid JSON format:" + (error as Error)?.message);
+  }
+};
 
 export function getPrompt(data: MockInteviewFormData) {
   const prompt = `Generate a list of 5 technical interview questions and answers as an array of objects in the following format:

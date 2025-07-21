@@ -22,6 +22,7 @@ export const mockInteviewFormSchema = z.object({
     .string()
     .min(1, "Job description required.")
     .min(50, "Job description must be at least 50 characters."),
+
   experience: z.coerce
     .number()
     .min(0, "Experience cannot be empty or negative."),
@@ -29,3 +30,23 @@ export const mockInteviewFormSchema = z.object({
 });
 
 export type MockInteviewFormData = z.infer<typeof mockInteviewFormSchema>;
+
+export const resumeAnalyzerFormSchema = z.object({
+  file: z
+    .instanceof(File, { message: "File is required." })
+    .refine(
+      file => file.size <= 20 * 1024 * 1024,
+      "File size must be less than 20MB."
+    )
+    .refine(
+      file => file.type.startsWith("application/pdf"),
+      "File must be a pdf."
+    ),
+  jobRole: z.string().min(1, "Role is required."),
+  jobDescription: z
+    .string()
+    .min(1, "Job description required.")
+    .min(50, "Job description must be at least 50 characters."),
+});
+
+export type ResumeAnalyzerFormdata = z.infer<typeof resumeAnalyzerFormSchema>;
