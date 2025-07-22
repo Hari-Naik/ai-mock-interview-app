@@ -6,15 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// export function formatAiResponse(response: string) {
-//   const startIndex = response.indexOf("[");
-//   const endIndex = response.lastIndexOf("]");
-
-//   const text = response.slice(startIndex, endIndex + 1);
-
-//   return JSON.parse(text);
-// }
-
 export const formatAIResponse = (response: string) => {
   let cleanText = response.trim();
   cleanText = cleanText.replace("```json", "");
@@ -63,3 +54,44 @@ Return the result in JSON format with the fields "rating" (number) and "feedback
 
   return prompt;
 }
+
+export const resumAnalyzerPrompt = ({
+  resumeText,
+  jobRole,
+  jobDescription,
+}: {
+  resumeText: string;
+  jobRole: string;
+  jobDescription: string;
+}) => {
+  const prompt = `
+    	You are a professional resume reviewer and career coach.
+
+    Analyze the provided resume based on the given job role and job description. Compare the candidate's qualifications, skills, and experiences with the expectations outlined in the job description.
+
+    Return the response strictly in the following JSON format:
+
+    {
+      "matchScore": number (0-100),
+      "summary": string,
+      "strengths": [string],
+      "weaknesses": [string],
+      "missingSkills": [string],
+      "recommendedImprovements": [string],
+      "atsFriendliness": [string],
+      "isRoleSuitable": boolean,
+	  "roleSuitabilityReason":string
+    }
+
+    Resume Text:${resumeText}.
+
+    Job Role:${jobRole}.
+
+    Job Description: ${jobDescription}
+
+    Analyze the resume only with respect to this job role and description. Do not guess or hallucinate any information that is not present in the resume. If some key details are missing in the resume, clearly mention that in weaknesses or missingSkills.
+
+    Be objective, concise, and accurate.`;
+
+  return prompt;
+};
