@@ -86,7 +86,7 @@ const ResumeAnalyzerForm = ({
               </label>
               <label
                 htmlFor="fileInput"
-                className="uppercase text-purple-600 font-semibold text-sm shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 p-3 border rounded-md cursor-pointer">
+                className="uppercase text-purple-600 font-semibold text-sm text-nowrap shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 p-3 border rounded-md cursor-pointer">
                 {file !== undefined ? "change resume" : "upload"}
               </label>
             </div>

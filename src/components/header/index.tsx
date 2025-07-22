@@ -6,7 +6,7 @@ import Logo from "./logo";
 import Menu from "../menu";
 import Navigation from "./navigation";
 import UserAvatar from "./user-avatar";
-import UserProfile from "./user-profile";
+import ProfileDropDown from "./profile-drop-down";
 
 const Header = () => {
   const [toggleProfile, setToggleProfile] = useState<boolean>(false);
@@ -40,16 +40,16 @@ const Header = () => {
     <header className="w-full h-[80px] flex items-center justify-between shadow-sm px-4 py-4 md:px-8">
       <div className="flex items-center gap-6 md:gap-8">
         <Logo />
-        <nav className="hidden md:flex">
+        <div className="hidden md:flex">
           <Navigation />
-        </nav>
+        </div>
       </div>
       <div className="flex items-center gap-6">
         <UserAvatar handleToggleProfile={handleToggleProfile} />
         <Menu />
       </div>
 
-      <UserProfile
+      <ProfileDropDown
         isOpen={toggleProfile}
         onClose={handleToggleProfile}
         ref={profileRef}

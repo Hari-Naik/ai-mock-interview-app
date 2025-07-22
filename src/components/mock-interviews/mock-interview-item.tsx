@@ -15,11 +15,11 @@ const MockInterviewItem = ({
 }: MockInterviewItemProps) => {
   return (
     <li className="p-4 rounded-md hover:shadow-md shadow-gray-100 border border-gray-200 flex flex-col gap-3 cursor-pointer">
-      <h1 className="text-lg  font-medium">{interview.jobRole}</h1>
+      <h1 className="text-lg font-medium">{interview.jobRole}</h1>
       <p style={{ whiteSpace: "pre-line" }} className="text-sm text-[#737373]">
         {interview.jobDescription.slice(0, 350)}...
       </p>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center flex-wrap gap-3">
         {interview.techStack.map(skill => (
           <div
             key={skill}

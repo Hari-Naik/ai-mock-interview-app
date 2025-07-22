@@ -15,7 +15,7 @@ const ResumeAnalyzer = () => {
     AnalysisResultType | undefined
   >();
   return (
-    <div className="pb-24 px-10 pt-10 ">
+    <div className="pb-24 md:px-10 pt-10 ">
       <Container className="bg-white rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.1)]">
         {analysisResults ? (
           <ResumeAnalysisResults
