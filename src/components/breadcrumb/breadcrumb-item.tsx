@@ -5,6 +5,8 @@ const getPathName = (path: string): string => {
   switch (path) {
     case "interviews":
       return "Mock Interviews";
+    case "resume-analyzer":
+      return "Resume Analyzer";
 
     default:
       return path;

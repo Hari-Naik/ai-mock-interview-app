@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ToastContainer } from "react-toastify";
 import Footer from "@/components/footer";
-import { Provider } from "./provider";
+import { Providers } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
@@ -35,12 +35,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Provider>
+        <Providers>
           <Header />
           {children}
           <Footer />
           <ToastContainer autoClose={3000} hideProgressBar closeOnClick />
-        </Provider>
+        </Providers>
         <SpeedInsights />
       </body>
     </html>

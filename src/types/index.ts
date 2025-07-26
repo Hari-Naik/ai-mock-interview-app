@@ -46,3 +46,11 @@ export interface AnalysisResultType {
     roleSuitabilityReason: string;
   };
 }
+
+export interface ResumeAnalysisType extends AnalysisResultType {
+  id: string;
+  userId: string;
+  jobDescription: string;
+  createdAt: string;
+  updatedAt: string;
+}

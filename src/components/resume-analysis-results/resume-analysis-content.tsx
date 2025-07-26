@@ -18,7 +18,7 @@ const ResumeAnalysisContent = ({
         <p
           key={index}
           className={cn("flex items-center gap-2 text-base mt-2", className)}>
-          {className === "text-green-700" ? (
+          {className === "text-[#008236]" ? (
             <Check size={20} />
           ) : (
             <X size={20} />

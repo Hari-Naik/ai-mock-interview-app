@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Button from "@/components/button";
 
-
-
 export default function Error({
   error,
   reset,
@@ -27,9 +25,7 @@ export default function Error({
         alt="no data found"
       />
 
-      <h2 className="text-lg font-semibold text-[#767676]">
-        Something went wrong!
-      </h2>
+      <h2 className="text-lg font-semibold text-[#767676]">{error.message}</h2>
 
       <Button text="Try again" onClick={reset} />
     </div>
