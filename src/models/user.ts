@@ -4,6 +4,15 @@ import bcrypt from "bcrypt";
 interface IUser extends Document {
   email: string;
   password: string;
+  profilePic?: string;
+  firstName?: string;
+  lastName?: string;
+  language?: string;
+  currentPosition?: string;
+  company?: string;
+  skills?: string[];
+  experience?: number;
+  about?: string;
 }
 
 const userSchema = new Schema<IUser>(
@@ -18,6 +27,43 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       minlength: 6,
+    },
+    profilePic: {
+      type: String,
+      default: "",
+    },
+    firstName: {
+      type: String,
+      trim: true,
+    },
+    lastName: {
+      type: String,
+      trim: true,
+    },
+    language: {
+      type: String,
+    },
+    currentPosition: {
+      type: String,
+      trim: true,
+    },
+    company: {
+      type: String,
+      trim: true,
+    },
+    skills: {
+      type: [String],
+      default: [],
+    },
+    experience: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+    about: {
+      type: String,
+      maxlength: 1000,
+      trim: true,
     },
   },
   { timestamps: true }

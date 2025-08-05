@@ -32,7 +32,7 @@ interface ResponseType {
   error: string | null;
 }
 
-async function uploadFile(file: File) {
+export async function uploadFile(file: File) {
   const utapi = new UTApi();
   const response = await utapi.uploadFiles([file]);
   const [result, error] = response;

@@ -42,13 +42,14 @@ const ProfilePage = () => {
 
   const activeTabComponent = useMemo(
     () => PROFILE_TABS.find(tab => tab.id === activeTab)?.component,
+
     [activeTab]
   );
 
   return (
     <div>
       <Container className="flex flex-col md:flex-row gap-3">
-        <div className="w-[30%] flex flex-col gap-3">
+        <div className="w-full md:w-[30%] flex flex-col gap-3">
           <TabNavigation
             tabs={PROFILE_TABS}
             activeTab={activeTab}

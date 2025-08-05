@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface TabNavigationProps {
-  tabs: { id: string; label: string; component: React.ReactNode }[];
+  tabs: { id: string; label: string }[];
   activeTab: string;
   onTabChange: (tabId: string) => void;
 }

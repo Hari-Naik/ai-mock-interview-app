@@ -54,3 +54,19 @@ export interface ResumeAnalysisType extends AnalysisResultType {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface UserType {
+  id: string;
+  email: string;
+  profilePic?: string;
+  firstName?: string;
+  lastName?: string;
+  language?: string;
+  currentPosition?: string;
+  company?: string;
+  skills: string[];
+  experience?: number;
+  about?: string;
+  createdAt: string;
+  updatedAt: string;
+}
