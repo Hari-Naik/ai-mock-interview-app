@@ -13,6 +13,10 @@ interface IUser extends Document {
   skills?: string[];
   experience?: number;
   about?: string;
+  educationDetails?: {
+    college: string;
+    degree: string;
+  };
 }
 
 const userSchema = new Schema<IUser>(
@@ -64,6 +68,16 @@ const userSchema = new Schema<IUser>(
       type: String,
       maxlength: 1000,
       trim: true,
+    },
+    educationDetails: {
+      college: {
+        type: String,
+        trim: true,
+      },
+      degree: {
+        type: String,
+        trim: true,
+      },
     },
   },
   { timestamps: true }

@@ -47,7 +47,7 @@ const ProfilePage = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Container className="flex flex-col md:flex-row gap-3">
         <div className="w-full md:w-[30%] flex flex-col gap-3">
           <TabNavigation

@@ -25,29 +25,49 @@ export async function updateUser(
       };
     }
 
-    const profilePic = formData.get("profilePic") as File;
+    let rawFormData;
+    const dataType = formData.get("dataType");
 
-    if (profilePic.size) {
-      const uploaded = await uploadFile(profilePic);
-      await User.findByIdAndUpdate(session.user.id, {
-        profilePic: uploaded?.ufsUrl,
-      });
+    if (dataType === "education") {
+      rawFormData = {
+        educationDetails: {
+          college: formData.get("college"),
+          degree: formData.get("degree"),
+        },
+      };
+    } else if (dataType === "social") {
+      rawFormData = {
+        socialLinks: {
+          portfolio: formData.get("portfolio"),
+          linkedin: formData.get("linkedin"),
+          github: formData.get("github"),
+          twitter: formData.get("twitter"),
+        },
+      };
+    } else if (dataType === "password") {
+    } else {
+      const profilePic = formData.get("profilePic") as File;
+      if (profilePic.size) {
+        const uploaded = await uploadFile(profilePic);
+        await User.findByIdAndUpdate(session.user.id, {
+          profilePic: uploaded?.ufsUrl,
+        });
+      }
+
+      rawFormData = {
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        language: formData.get("language"),
+        currentPosition: formData.get("currentPosition"),
+        company: formData.get("company"),
+        skills: formData.get("skills")?.toString().split(","),
+        experience: formData.get("experience"),
+        about: formData.get("about"),
+      };
     }
-
-    const rawFormData = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
-      language: formData.get("language"),
-      currentPosition: formData.get("currentPosition"),
-      company: formData.get("company"),
-      skills: formData.get("skills")?.toString(),
-      experience: formData.get("experience"),
-      about: formData.get("about"),
-    };
 
     await User.findByIdAndUpdate(session.user.id, {
       ...rawFormData,
-      skills: rawFormData.skills?.split(","),
     });
 
     return {

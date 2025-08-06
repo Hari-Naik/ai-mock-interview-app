@@ -1,22 +1,22 @@
 import React, { useActionState, useEffect } from "react";
-import Image from "next/image";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { CircleAlert, CircleCheck, LoaderCircle } from "lucide-react";
+
+import UpdateButton from "./update-btn";
+import ProfileInput from "./profile-input";
+import ResponseAlert from "./response-alert";
 
 import { useUser } from "@/hooks/useUser";
 import { updateUser, UserActionState } from "@/actions/user";
 
-const initialState: UserActionState = {
+export const initialState: UserActionState = {
   message: "",
   error: "",
 };
 
 const PersonalInformation = () => {
-  const [state, formAction, isPending] = useActionState(
-    updateUser,
-    initialState
-  );
+  const [state, formAction] = useActionState(updateUser, initialState);
 
   const { data: user, refetch } = useUser();
 
@@ -60,102 +60,65 @@ const PersonalInformation = () => {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-5">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="firstName" className={cn(labelBaseClass)}>
-              First Name
-            </label>
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              defaultValue={user?.firstName}
-              className={cn(inputBaseClass)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="lastName" className={cn(labelBaseClass)}>
-              Last Name
-            </label>
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              defaultValue={user?.lastName}
-              className={cn(inputBaseClass)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="email" className={cn(labelBaseClass)}>
-              Email
-            </label>
-            <input
-              type="email"
-              disabled
-              className={cn(inputBaseClass, "cursor-not-allowed")}
-              defaultValue={user?.email}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="language" className={cn(labelBaseClass)}>
-              Language
-            </label>
-            <input
-              type="text"
-              name="language"
-              id="language"
-              defaultValue={user?.language}
-              className={cn(inputBaseClass)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="currentPosition" className={cn(labelBaseClass)}>
-              Current Position
-            </label>
-            <input
-              type="text"
-              name="currentPosition"
-              id="currentPosition"
-              defaultValue={user?.currentPosition}
-              className={cn(inputBaseClass)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="company" className={cn(labelBaseClass)}>
-              Company
-            </label>
-            <input
-              type="text"
-              name="company"
-              id="company"
-              defaultValue={user?.company}
-              className={cn(inputBaseClass)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="skills" className={cn(labelBaseClass)}>
-              Skills
-            </label>
-            <input
-              type="text"
-              name="skills"
-              id="skills"
-              defaultValue={user?.skills?.join(",")}
-              className={cn(inputBaseClass)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="experience" className={cn(labelBaseClass)}>
-              Experience
-            </label>
-            <input
-              type="number"
-              name="experience"
-              id="experience"
-              min={0}
-              defaultValue={user?.experience}
-              className={cn(inputBaseClass)}
-            />
-          </div>
+          <ProfileInput
+            type="text"
+            id="firstname"
+            name="firstName"
+            defaultValue={user?.firstName}
+            label="First Name"
+          />
+          <ProfileInput
+            type="text"
+            id="lastname"
+            name="lastName"
+            defaultValue={user?.lastName}
+            label="Last Name"
+          />
+
+          <ProfileInput
+            type="email"
+            id="email"
+            name="email"
+            defaultValue={user?.email}
+            label="Email"
+          />
+          <ProfileInput
+            type="text"
+            id="language"
+            name="language"
+            defaultValue={user?.language}
+            label="Language"
+          />
+          <ProfileInput
+            type="text"
+            id="position"
+            name="currentPosition"
+            defaultValue={user?.currentPosition}
+            label="Current Position"
+          />
+          <ProfileInput
+            type="text"
+            id="company"
+            name="company"
+            defaultValue={user?.company}
+            label="Company"
+          />
+
+          <ProfileInput
+            type="text"
+            id="skills"
+            name="skills"
+            defaultValue={user?.skills?.join(",")}
+            label="Skills"
+          />
+          <ProfileInput
+            type="number"
+            id="experience"
+            name="experience"
+            defaultValue={user?.experience}
+            label="Experience"
+          />
+
           <div className="flex flex-col gap-2">
             <label htmlFor="about" className={cn(labelBaseClass)}>
               Write about you
@@ -169,29 +132,17 @@ const PersonalInformation = () => {
           </div>
         </div>
 
-        {state.message && (
-          <div className="flex items-center gap-2 text-xs text-green-700 font-medium bg-blue-100 rounded-md px-3 py-2">
-            <CircleCheck />
-            <span className="capitalize">Profile details updated.</span>
-          </div>
-        )}
         {state.error && (
-          <div className="flex items-center gap-2 text-xs text-red-700 font-medium bg-red-100 rounded-md px-3 py-2">
-            <CircleAlert />
-            <span className="capitaliz">
-              Failed to update personal details.
-            </span>
-          </div>
+          <ResponseAlert
+            type="error"
+            message="Failed to update peronal details."
+          />
+        )}
+        {state.message && (
+          <ResponseAlert type="success" message="Personal Details Updated." />
         )}
 
-        <button
-          disabled={isPending}
-          className={cn(
-            "w-30 px-3 py-2 rounded bg-emerald-500 text-white text-sm font-medium uppercase mt-5 cursor-pointer disabled:cursor-default disabled:opacity-80 flex items-center justify-center gap-2"
-          )}>
-          {isPending && <LoaderCircle size={20} className="animate-spin" />}{" "}
-          update
-        </button>
+        <UpdateButton />
       </form>
     </div>
   );

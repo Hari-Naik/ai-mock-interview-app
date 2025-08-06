@@ -67,6 +67,10 @@ export interface UserType {
   skills: string[];
   experience?: number;
   about?: string;
+  educationDetails?: {
+    college: string;
+    degree: string;
+  };
   createdAt: string;
   updatedAt: string;
 }
