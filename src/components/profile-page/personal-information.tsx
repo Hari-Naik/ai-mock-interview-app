@@ -16,9 +16,8 @@ export const initialState: UserActionState = {
 };
 
 const PersonalInformation = () => {
-  const [state, formAction] = useActionState(updateUser, initialState);
-
   const { data: user, refetch } = useUser();
+  const [state, formAction, pending] = useActionState(updateUser, initialState);
 
   useEffect(() => {
     refetch();
@@ -144,7 +143,7 @@ const PersonalInformation = () => {
           <ResponseAlert type="success" message="Personal Details Updated." />
         )}
 
-        <UpdateButton />
+        <UpdateButton pending={pending} />
       </form>
     </div>
   );

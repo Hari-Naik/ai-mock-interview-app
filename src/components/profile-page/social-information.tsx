@@ -10,7 +10,7 @@ import { initialState } from "./personal-information";
 
 const SocialInformation = () => {
   const { data: user, refetch } = useUser();
-  const [state, formAction] = useActionState(updateUser, initialState);
+  const [state, formAction, pending] = useActionState(updateUser, initialState);
 
   useEffect(() => {
     if (state?.message) {
@@ -72,7 +72,7 @@ const SocialInformation = () => {
           <ResponseAlert type="success" message="Social Details Updated." />
         )}
 
-        <UpdateButton />
+        <UpdateButton pending={pending} />
       </form>
     </div>
   );

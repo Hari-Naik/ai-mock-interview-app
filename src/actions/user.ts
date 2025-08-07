@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import User from "@/models/user";
 import { connectDB } from "@/lib/db";
 import { uploadFile } from "./resume-analyzer";
+import bcrypt from "bcrypt";
 
 export interface UserActionState {
   message: string | null;
@@ -21,6 +22,15 @@ export async function updateUser(
     if (!session?.user) {
       return {
         error: "Unauthorized. Please signin.",
+        message: null,
+      };
+    }
+
+    const user = await User.findOne({ email: session.user.email });
+
+    if (!user) {
+      return {
+        error: "User not found.",
         message: null,
       };
     }
@@ -45,6 +55,25 @@ export async function updateUser(
         },
       };
     } else if (dataType === "password") {
+      const currentPassword = formData.get("currentPassword") as string;
+      const newPassword = formData.get("newPassword") as string;
+
+      const isPasswordMatched = await bcrypt.compare(
+        currentPassword,
+        user.password
+      );
+
+      if (!isPasswordMatched) {
+        return {
+          error: "Wrong password.",
+          message: null,
+        };
+      }
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(newPassword, salt);
+      rawFormData = {
+        password: hashedPassword,
+      };
     } else {
       const profilePic = formData.get("profilePic") as File;
       if (profilePic.size) {
@@ -65,8 +94,6 @@ export async function updateUser(
         about: formData.get("about"),
       };
     }
-
-    console.log(rawFormData);
 
     await User.findByIdAndUpdate(session.user.id, {
       ...rawFormData,

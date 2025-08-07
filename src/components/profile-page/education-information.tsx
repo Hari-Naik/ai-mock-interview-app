@@ -10,7 +10,7 @@ import { initialState } from "./personal-information";
 
 const EducationInformation = () => {
   const { data: user, refetch } = useUser();
-  const [state, formAction] = useActionState(updateUser, initialState);
+  const [state, formAction, pending] = useActionState(updateUser, initialState);
 
   useEffect(() => {
     if (state?.message) {
@@ -58,7 +58,7 @@ const EducationInformation = () => {
           <ResponseAlert type="success" message="Education details updated." />
         )}
 
-        <UpdateButton />
+        <UpdateButton pending={pending} />
       </form>
     </div>
   );

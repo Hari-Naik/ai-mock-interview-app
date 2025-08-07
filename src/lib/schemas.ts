@@ -50,3 +50,31 @@ export const resumeAnalyzerFormSchema = z.object({
 });
 
 export type ResumeAnalyzerFormdata = z.infer<typeof resumeAnalyzerFormSchema>;
+
+export const resetPasswordFormSchema = z
+  .object({
+    currentPassword: z
+      .string()
+      .min(1, "Password is required.")
+      .min(8, "Your password must contain 8 or more characters.")
+      .max(72, "Your password must contain less than 72 characters.")
+      .trim(),
+    newPassword: z
+      .string()
+      .min(1, "Password is required.")
+      .min(8, "Your password must contain 8 or more characters.")
+      .max(72, "Your password must contain less than 72 characters.")
+      .trim(),
+    confirmPassword: z
+      .string()
+      .min(1, "Password is required.")
+      .min(8, "Your password must contain 8 or more characters.")
+      .max(72, "Your password must contain less than 72 characters.")
+      .trim(),
+  })
+  .refine(data => data.newPassword === data.confirmPassword, {
+    message: "The passwords do not match.",
+    path: ["confirmPassword"],
+  });
+
+export type ResetPasswordFormData = z.infer<typeof resetPasswordFormSchema>;

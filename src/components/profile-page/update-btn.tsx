@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
 import { LoaderCircle } from "lucide-react";
 import React from "react";
-import { useFormStatus } from "react-dom";
 
-const UpdateButton = () => {
-  const { pending } = useFormStatus();
+interface UpdateButtonProps {
+  pending: boolean;
+}
+
+const UpdateButton = ({ pending }: UpdateButtonProps) => {
   return (
     <button
       disabled={pending}

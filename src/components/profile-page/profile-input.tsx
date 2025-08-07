@@ -5,7 +5,7 @@ interface ProfileInputProps {
   type: string;
   id: string;
   name: string;
-  defaultValue: string;
+  defaultValue?: string;
   label: string;
 }
 

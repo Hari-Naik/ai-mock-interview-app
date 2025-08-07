@@ -49,7 +49,7 @@ const Dashboard = () => {
     <div className="pb-24 min-h-[calc(100vh-80px)]">
       <Container>
         <div className="w-full flex flex-col gap-6 md:flex-row">
-          <div className="w-[30%]">
+          <div className="w-full md:w-[30%]">
             <TabNavigation
               tabs={DASHBOARD_TABS}
               activeTab={activeTabId}
