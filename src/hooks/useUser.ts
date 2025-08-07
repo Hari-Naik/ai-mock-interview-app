@@ -1,6 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { UserType } from "@/types";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-const fetchUser = async () => {
+const fetchUser = async (): Promise<UserType> => {
   const response = await fetch("/api/user");
   const result = await response.json();
   if (result.success === false) {
@@ -14,5 +15,6 @@ export const useUser = () => {
     queryKey: ["user"],
     queryFn: fetchUser,
     staleTime: 1000 * 60 * 5,
+    placeholderData: keepPreviousData,
   });
 };

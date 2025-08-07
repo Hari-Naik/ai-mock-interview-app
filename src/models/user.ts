@@ -17,6 +17,12 @@ interface IUser extends Document {
     college: string;
     degree: string;
   };
+  socialLinks?: {
+    portfolio: string;
+    linkedin: string;
+    github: string;
+    twitter: string;
+  };
 }
 
 const userSchema = new Schema<IUser>(
@@ -75,6 +81,24 @@ const userSchema = new Schema<IUser>(
         trim: true,
       },
       degree: {
+        type: String,
+        trim: true,
+      },
+    },
+    socialLinks: {
+      portfolio: {
+        type: String,
+        trim: true,
+      },
+      linkedin: {
+        type: String,
+        trim: true,
+      },
+      github: {
+        type: String,
+        trim: true,
+      },
+      twitter: {
         type: String,
         trim: true,
       },

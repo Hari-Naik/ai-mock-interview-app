@@ -64,14 +64,14 @@ const PersonalInformation = () => {
             type="text"
             id="firstname"
             name="firstName"
-            defaultValue={user?.firstName}
+            defaultValue={user?.firstName || ""}
             label="First Name"
           />
           <ProfileInput
             type="text"
             id="lastname"
             name="lastName"
-            defaultValue={user?.lastName}
+            defaultValue={user?.lastName || ""}
             label="Last Name"
           />
 
@@ -79,28 +79,28 @@ const PersonalInformation = () => {
             type="email"
             id="email"
             name="email"
-            defaultValue={user?.email}
+            defaultValue={user?.email || ""}
             label="Email"
           />
           <ProfileInput
             type="text"
             id="language"
             name="language"
-            defaultValue={user?.language}
+            defaultValue={user?.language || ""}
             label="Language"
           />
           <ProfileInput
             type="text"
             id="position"
             name="currentPosition"
-            defaultValue={user?.currentPosition}
+            defaultValue={user?.currentPosition || ""}
             label="Current Position"
           />
           <ProfileInput
             type="text"
             id="company"
             name="company"
-            defaultValue={user?.company}
+            defaultValue={user?.company || ""}
             label="Company"
           />
 
@@ -108,14 +108,16 @@ const PersonalInformation = () => {
             type="text"
             id="skills"
             name="skills"
-            defaultValue={user?.skills?.join(",")}
+            defaultValue={user?.skills?.join(",") || ""}
             label="Skills"
           />
           <ProfileInput
             type="number"
             id="experience"
             name="experience"
-            defaultValue={user?.experience}
+            defaultValue={
+              user?.experience !== undefined ? String(user.experience) : "0"
+            }
             label="Experience"
           />
 

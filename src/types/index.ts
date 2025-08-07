@@ -71,6 +71,12 @@ export interface UserType {
     college: string;
     degree: string;
   };
+  socialLinks?: {
+    portfolio: string;
+    linkedin: string;
+    github: string;
+    twitter: string;
+  };
   createdAt: string;
   updatedAt: string;
 }

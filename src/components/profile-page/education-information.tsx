@@ -36,14 +36,14 @@ const EducationInformation = () => {
             type="text"
             id="college"
             name="college"
-            defaultValue={user?.educationDetails?.college}
+            defaultValue={user?.educationDetails?.college || ""}
             label="College"
           />
           <ProfileInput
             type="text"
             id="degree"
             name="degree"
-            defaultValue={user?.educationDetails?.degree}
+            defaultValue={user?.educationDetails?.degree || ""}
             label="Degree"
           />
         </div>

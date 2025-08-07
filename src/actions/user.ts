@@ -66,6 +66,8 @@ export async function updateUser(
       };
     }
 
+    console.log(rawFormData);
+
     await User.findByIdAndUpdate(session.user.id, {
       ...rawFormData,
     });
